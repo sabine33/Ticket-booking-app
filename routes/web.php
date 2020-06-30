@@ -23,6 +23,7 @@ Route::get('/', 'FrontController@homepage');
 Route::get('about', 'FrontController@about');
 Route::get('search-flights', 'FrontController@search_flight');
 Route::get('news', 'FrontController@news');
+Route::get('ticket', 'TicketController@getTicket');
 Route::get('contact', 'FrontController@contact_us');
 Route::get('booking-front/{id}', 'FrontController@booking');
 Route::get('search', 'FrontController@search');
