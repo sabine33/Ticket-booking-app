@@ -39,11 +39,12 @@
 
    @push('scripts')
    <script>
-       $('#flightModal').on('shown.bs.modal', function(event) {
+       let elements = ["#id", "#name", "#email", "#password"];
+
+       $('#editModal').on('shown.bs.modal', function(event) {
            var button = $(event.relatedTarget)
            var id = button.data('id')
            var type = button.data('type')
-           let elements = ["#id", "#name", "#email", "#password"];
            elements.forEach(elem => {
                $(elem).attr('disabled', type == 'view')
            })
@@ -73,16 +74,20 @@
                email: $("#email").val(),
                password: $("#password").val()
            }
-           alert(JSON.stringify(data));
            if (type == 'create') {
-               axios.post('http://127.0.0.1:8000/api/users/', data).then((response) => {
+               elements.forEach(elem => {
+                   $(elem).val('');
+               })
+               axios.post(API_URL + 'users/', data).then((response) => {
                    alert(JSON.stringify(response.data))
+                   alert("SAVED");
                }).catch(err => {
                    alert(JSON.stringify(err))
                });
            } else if (type == 'edit') {
-               axios.put('http://127.0.0.1:8000/api/users/' + id, data).then((response) => {
+               axios.put(API_URL + 'users/' + id, data).then((response) => {
                    alert(JSON.stringify(response.data))
+                   alert("SAVED")
                }).catch(err => {
                    alert(JSON.stringify(err))
                });
@@ -92,10 +97,13 @@
        }
 
        function fillElement(id) {
-           axios.get('http://127.0.0.1:8000/api/users/' + id).then(response => {
-               let location = response.data;
-               $('#id').val(location.id)
-               $('#locationName').val(location.name)
+           axios.get(API_URL + 'users/' + id).then(response => {
+               let user = response.data;
+               $('#id').val(user.id)
+               $('#name').val(user.name)
+               $('#email').val(user.email)
+               $('#password').val(user.password)
+
            }).catch(err => {
                alert(err)
            })

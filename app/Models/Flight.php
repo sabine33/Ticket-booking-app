@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
 
 class Flight extends Model
 {
-    //name,airlines_name,date,from_location,to_location,departure_time,flight_duration,ticket_count,flight_price,status
-    protected $fillable = ['airlines_id', 'date', 'from_location_id', 'to_location_id', 'departure_time', 'flight_duration', 'flight_price', 'ticket_count', 'status'];
+    protected $fillable = ['departure_date', 'departure_time', 'departure_type', 'max_ticket_count', 'max_luggage_size', 'flight_duration', 'flight_price_economy', 'flight_price_business', 'flight_price_both_way_ratio', 'from_location_id', 'to_location_id', 'airlines_id', 'status'];
 
     protected $appends = ['flight_name', 'available_tickets'];
 
@@ -30,6 +31,20 @@ class Flight extends Model
     }
     public function getAvailableTicketsAttribute()
     {
-        return 100;
+        $id = $this->id;
+        $bought = DB::table('tickets')
+            ->selectRaw('sum(adults_count)+sum(kids_count) as bought')->where('flight_id', '=', $id)
+            ->pluck('bought')[0];
+        $max = DB::table('flights')
+            ->selectRaw('max_ticket_count')->where('id', '=', $id)
+            ->pluck('max_ticket_count')[0];
+        //         $bought_tickets = DB::select(DB::raw("select sum(adults_count)+sum(kids_count) as bought_tickets from tickets where flight_id=:id
+        // "), array(
+        //             'id' => 1
+        //         ));
+        return $max - $bought;
+
+        // return array('available_tickets' => $max - $bought);
+        // return 100;
     }
 }

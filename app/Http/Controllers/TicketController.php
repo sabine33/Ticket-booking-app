@@ -10,8 +10,7 @@ use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
-
-
+use Illuminate\Support\Str;
 
 class TicketController extends Controller
 {
@@ -29,7 +28,7 @@ class TicketController extends Controller
         return Ticket::find($id);
     }
 
-    public function send_sms(Request $request)
+    public function send_sms($phone, $id)
     {
         // $client = new Client(['verify' => false]);
 
@@ -53,8 +52,8 @@ class TicketController extends Controller
             'verify' => false
         ])->post($url, [
             'auth_token' => $auth_token,
-            'to' => '9779863180880',
-            'text' => 'Your ticket has been booked successfully with ticket# T124.'
+            'to' => '977' . $phone,
+            'text' => 'Your ticket has been booked successfully with ticket# ' . $id
         ]);
         return $response;
     }
@@ -79,14 +78,19 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $email = $request->passenger_email;
-        $fullname = $request->passenger_name;
-        $ticket = Ticket::create($request->all());
-        $mailData = $ticket;
-        if (isset($ticket)) {
-            Mail::to($email)->send(new TicketMail($mailData));
-        } else {
-        }
-        return $mailData;
+        $phone = $request->passenger_phone;
+        $token = Str::random(10);
+        $array = $request->all();
+        $array["token"] = $token;
+        // $fullname = $request->passenger_name;
+        $ticket = Ticket::create($array);
+        // $this->send_sms($phone, $ticket->id);
+
+        // if (isset($ticket)) {
+        //     Mail::to($email)->send(new TicketMail($ticket));
+        // } else {
+        // }
+        return $ticket;
     }
 
     public function update(Request $request, $id)

@@ -17,15 +17,14 @@
 <body>
     <div class="container-fluid">
         <div class="row no-gutter">
-            <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-            <div class="col-md-8 col-lg-6">
+            <div class="col-lg-4 mx-auto">
                 <div class="login d-flex align-items-center py-5">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">Welcome back!</h3>
-                                <form action="{{url('post-login')}}" method="POST" id="logForm">
+                            <div class="col">
+                                <h4 class="my-3">Administration Login</h4>
 
+                                <form action="{{url('post-login')}}" method="POST" id="logForm">
                                     {{ csrf_field() }}
                                     @if(session()->has('message'))
                                     <div class="alert alert-success">
@@ -34,26 +33,24 @@
                                     @endif
 
                                     <div class="form-label-group">
-                                        <input type="email" name="email" id="inputEmail" value="apple@ball.com" class="form-control" placeholder="Email address">
                                         <label for="inputEmail">Email address</label>
-
+                                        <input type="email" name="email" id="inputEmail" value="apple@ball.com" class="form-control" placeholder="Email address">
                                         @if ($errors->has('email'))
                                         <span class="error">{{ $errors->first('email') }}</span>
                                         @endif
                                     </div>
 
                                     <div class="form-label-group">
-                                        <input type="password" name="password" value="appleball" id="inputPassword" class="form-control" placeholder="Password">
                                         <label for="inputPassword">Password</label>
-
+                                        <input type="password" name="password" value="appleball" id="inputPassword" class="form-control" placeholder="Password">
                                         @if ($errors->has('password'))
                                         <span class="error">{{ $errors->first('password') }}</span>
                                         @endif
                                     </div>
 
-                                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign In</button>
-                                    <div class="text-center">If you have an account?
-                                        <a class="small" href="{{url('registration')}}">Sign Up</a></div>
+                                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold my-2" type="submit">Sign In</button>
+                                    <!-- <div class="text-center">If you have an account?
+                                        <a class="small" href="{{url('registration')}}">Sign Up</a></div> -->
                                 </form>
                             </div>
                         </div>

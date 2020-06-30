@@ -10,8 +10,8 @@
                            </div>
 
                            <div class="form-group col-md-10">
-                               <label for="airlinesName">Airlines Name</label>
-                               <input type="text" class="form-control" id="airlinesName">
+                               <label for="name">Airlines Name</label>
+                               <input type="text" class="form-control" id="name" required>
                            </div>
                        </div>
                </div>
@@ -31,7 +31,7 @@
            var button = $(event.relatedTarget)
            var id = button.data('id')
            var type = button.data('type')
-           let elements = ["#id", "#airlinesName"];
+           let elements = ["#id", "#name"];
            elements.forEach(elem => {
                $(elem).attr('disabled', type == 'view')
            })
@@ -57,17 +57,17 @@
            let id = event.dataset.id;
 
            let data = {
-               name: $("#airlinesName").val()
+               name: $("#name").val()
            }
            alert(JSON.stringify(data));
            if (type == 'create') {
-               axios.post('http://127.0.0.1:8000/api/airlines/', data).then((response) => {
+               axios.post(API_URL + 'airlines/', data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
                });
            } else if (type == 'edit') {
-               axios.put('http://127.0.0.1:8000/api/airlines/' + id, data).then((response) => {
+               axios.put(API_URL + 'airlines/' + id, data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
@@ -78,10 +78,10 @@
        }
 
        function fillElement(id) {
-           axios.get('http://127.0.0.1:8000/api/airlines/' + id).then(response => {
+           axios.get(API_URL + 'airlines/' + id).then(response => {
                let airlines = response.data;
                $('#id').val(airlines.id)
-               $('#airlinesName').val(airlines.name)
+               $('#name').val(airlines.name)
            }).catch(err => {
                alert(err)
            })

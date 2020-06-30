@@ -9,8 +9,8 @@
                                <input type="number" class="form-control" id="id" readonly>
                            </div>
                            <div class="form-group col-md-5">
-                               <label for="username">User</label>
-                               <select id="username" class="form-control">
+                               <label for="user_id">User</label>
+                               <select id="user_id" class="form-control">
                                    <option>Choose...</option>
                                    @foreach ($users as $user)
                                    <option value="{{$user->id}}"> {{ $user->name }}</option>
@@ -22,8 +22,8 @@
                        </div>
                        <div class="form-row">
                            <div class="form-group col-md-6">
-                               <label for="flightName">Flight </label>
-                               <select id="flightName" class="form-control">
+                               <label for="flight_id">Flight </label>
+                               <select id="flight_id" class="form-control">
                                    <option>Choose...</option>
                                    @foreach ($flights as $flight)
                                    <option value="{{$flight->id}}"> {{ $flight->airlines->name }}</option>
@@ -31,9 +31,55 @@
 
                                </select>
                            </div>
+                           <div class="form-group col-md-3">
+                               <label for="adults_count">Adults Count</label>
+                               <input type="number" class="form-control" id="adults_count">
+                           </div>
+                           <div class="form-group col-md-3">
+                               <label for="kids_count">Kids Count</label>
+                               <input type="number" class="form-control" id="kids_count">
+                           </div>
+                       </div>
+                       <div class="form-row">
+
                            <div class="form-group col-md-6">
-                               <label for="ticketCount">Ticket Count</label>
-                               <input type="number" class="form-control" id="ticketCount">
+                               <label for="passenger_name">Name</label>
+                               <input type="text" class="form-control" id="passenger_name">
+                           </div>
+                           <div class="form-group col-md-6">
+                               <label for="passenger_email">Email</label>
+                               <input type="email" class="form-control" id="passenger_email">
+                           </div>
+                           <div class="form-group col-md-6">
+                               <label for="passenger_address">Address</label>
+                               <input type="text" class="form-control" id="passenger_address">
+                           </div>
+                           <div class="form-group col-md-6">
+                               <label for="passenger_phone">Phone(+977)</label>
+                               <input type="text" class="form-control" id="passenger_phone">
+                           </div>
+                       </div>
+                       <div class="form-row">
+
+                           <div class="form-group col-md-6">
+                               <label for="total_cost">Total Cost</label>
+                               <input type="number" class="form-control" id="total_cost">
+                           </div>
+                           <div class="form-group col-md-5">
+                               <label for="departure_type">Departure Type</label>
+                               <select id="departure_type" class="form-control">
+                                   <option>Choose...</option>
+                                   <option value="one_way">One Way</option>
+                                   <option value="two_way">Two Way</option>
+                               </select>
+                           </div>
+                           <div class="form-group col-md-5">
+                               <label for="ticket_type">Ticket Type</label>
+                               <select id="ticket_type" class="form-control">
+                                   <option>Choose...</option>
+                                   <option value="economy">Economy</option>
+                                   <option value="business">Business</option>
+                               </select>
                            </div>
                        </div>
 
@@ -61,15 +107,12 @@
 
    @push('scripts')
    <script>
-       $('#flightModal').on('shown.bs.modal', function(event) {
+       $('#editModal').on('shown.bs.modal', function(event) {
            var button = $(event.relatedTarget) // Button that triggered the modal
            var id = button.data('id') // Extract info from data-* attributes
            var type = button.data('type')
 
-
-
-
-           let elements = ["#id", "#username", "#flightName", "#ticketCount", "#status"];
+           let elements = ["#id", "#user_id", "#flight_id", "#adults_count", "#kids_count", "#passenger_name", "#passenger_email", "#passenger_address", "#passenger_phone", "#total_cost", "#departure_type", "#ticket_type", "#status"];
            elements.forEach(elem => {
                $(elem).attr('disabled', type == 'view')
            })
@@ -93,27 +136,36 @@
            modal.find('.ok-button').attr('data-type', type);
 
        })
-       //    protected $fillable = ['name', 'airlines_id', 'date', 'from_location_id', 'to_location_id', 'departure_time', 'flight_duration', 'flight_price', 'ticket_count', 'status'];
 
        function saveElement(event) {
            let type = event.dataset.type;
            let id = event.dataset.id;
 
+           //    let elements = ["#id", "#user_id", "#flight_id", "#adults_count", "#kids_count", "#passenger_name", "#passenger_email", "#passenger_address", "#passenger_phone", "#total_cost", "#departure_type", "#ticket_type", "#status"];
+
            let data = {
-               user_id: $("#username").val(),
-               flight_id: $("#flightName").val(),
-               ticket_count: $('#ticketCount').val(),
+               user_id: $("#user_id").val(),
+               flight_id: $("#flight_id").val(),
+               adults_count: $('#adults_count').val(),
+               kids_count: $('#kids_count').val(),
+               passenger_name: $('#passenger_name').val(),
+               passenger_email: $('#passenger_email').val(),
+               passenger_address: $('#passenger_address').val(),
+               passenger_phone: $('#passenger_phone').val(),
+               total_cost: $('#total_cost').val(),
+               departure_type: $('#departure_type').val(),
+               ticket_type: $('#ticket_type').val(),
                status: $("#status").val() == 'on' ? true : false
            }
            alert(JSON.stringify(data));
            if (type == 'create') {
-               axios.post('http://127.0.0.1:8000/api/tickets/', data).then((response) => {
+               axios.post(API_URL + 'tickets/', data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
                });
            } else if (type == 'edit') {
-               axios.put('http://127.0.0.1:8000/api/tickets/' + id, data).then((response) => {
+               axios.put(API_URL + 'tickets/' + id, data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
@@ -124,14 +176,22 @@
        }
 
        function fillElement(id) {
-           axios.get('http://127.0.0.1:8000/api/tickets/' + id).then(response => {
-               //name,airlines_name,date,from_location,to_location,departure_time,flight_duration,ticket_count,flight_price,status
+           //    let elements = ["#id", "#user_id", "#flight_id", "#adults_count", "#kids_count", "#passenger_name", "#passenger_email", "#passenger_address", "#passenger_phone", "#total_cost", "#departure_type", "#ticket_type", "#status"];
+           axios.get(API_URL + 'tickets/' + id).then(response => {
                let ticket = response.data;
                $('#id').val(ticket.id)
-               $('#username').val(ticket.user_id).trigger('change')
-               $('#flightName').val(ticket.flight_id).trigger('change')
-               $('#ticketCount').val(ticket.ticket_count)
-               $('#status').val(flight.status)
+               $('#user_id').val(ticket.user_id).trigger('change')
+               $('#flight_id').val(ticket.flight_id).trigger('change')
+               $('#adults_count').val(ticket.adults_count)
+               $('#kids_count').val(ticket.kids_count)
+               $('#passenger_name').val(ticket.passenger_name)
+               $('#passenger_email').val(ticket.passenger_email)
+               $('#passenger_address').val(ticket.passenger_address)
+               $('#passenger_phone').val(ticket.passenger_phone)
+               $('#total_cost').val(ticket.total_cost)
+               $('#departure_type').val(ticket.departure_type).trigger('change')
+               $('#ticket_type').val(ticket.ticket_type).trigger('change')
+               $('#status').prop('checked', ticket.status);
 
            }).catch(err => {
                alert(err)

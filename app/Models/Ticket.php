@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     //id,user_id,flight_id,adults_count,kids_count,passenger_name,passenger_email,passenger_address,passenger_phone,total_cost,departure_type,ticket_type,is_confirmed,status
-    protected $fillable = ['flight_id', 'user_id', 'adults_count', 'kids_count', 'passenger_name', 'passenger_email', 'passenger_address', 'passenger_phone', 'total_cost', 'departure_type', 'ticket_type', 'is_confirmed', 'status'];
+    protected $fillable = ['flight_id', "user_id",  'adults_count', 'kids_count', 'passenger_name', 'passenger_email', 'passenger_address', 'passenger_phone', 'total_cost', 'departure_type', 'ticket_type', 'is_confirmed', 'status', 'token'];
 
 
     public function user()

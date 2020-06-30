@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @include('partials.delete_dialog')
-@include('partials.flights.flight_form',['locations'=>$locations])
+@include('partials.flights.flight_form',['locations'=>$locations,'airlines'=>$airlines])
 
 @section('content')
 
@@ -10,14 +10,10 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Flights </h1>
-    <p class="mb-4"> Hello {{Auth::user()->name}} ! Please use this section to manage different flights.</p>
+    <p class="mb-4"> Please use this section to manage different flights.</p>
 
-
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <!-- <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-        </div> -->
+
         <div class="card-body">
             <button class="btn btn-info btn-sm rounded-0 float-right my-1" type="button" data-toggle="modal" data-target="#editModal" data-type='create' data-placement="top" title="View"><i class="fa fa-plus"></i>Add</button>
             <div class="table-responsive">

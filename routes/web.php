@@ -24,35 +24,31 @@ Route::get('about', 'FrontController@about');
 Route::get('search-flights', 'FrontController@search_flight');
 Route::get('news', 'FrontController@news');
 Route::get('contact', 'FrontController@contact_us');
-Route::get('booking', 'FrontController@booking');
+Route::get('booking-front/{id}', 'FrontController@booking');
+Route::get('search', 'FrontController@search');
+Route::post('search', 'FrontController@searchFlights');
+Route::get('available_tickets', 'FrontController@getAvailableTickets');
+Route::get('cancel_ticket', 'FrontController@cancelTicket');
+Route::post('cancel_ticket', 'FrontController@cancelTicketPost');
 
 
 
-Route::prefix('/admin')->group(function () {
-    Route::resource('flights', 'FlightController');
-    Route::resource('airlines', 'AirlinesController');
-    Route::resource('locations', 'LocationController');
-    Route::resource('users', 'UserController');
-    Route::resource('tickets', 'TicketController');
-    Route::resource('carts', 'CartController');
-    Route::get('search', 'SearchController@search');
-    Route::get('book-ticket', 'SearchController@bookTickets');
-    Route::get('send_mail', 'TicketController@send_mail');
-    Route::get('send_sms', 'TicketController@send_sms');
-    Route::get('ticket', 'TicketController@getTicket');
-    Route::get('/', function () {
-        $users = factory(App\User::class, 5)->make();
-        return view('pages.home', compact('users'));
-    })->name('dashboard');
+Route::prefix('admin')->group(function () {
+    Route::resource('flights', 'FlightController')->middleware('auth');
+    Route::resource('airlines', 'AirlinesController')->middleware('auth');
+    Route::resource('locations', 'LocationController')->middleware('auth');
+    Route::resource('users', 'UserController')->middleware('auth');
+    Route::resource('tickets', 'TicketController')->middleware('auth');
+    Route::get('search', 'SearchController@search')->middleware('auth');
+    Route::get('book-ticket', 'SearchController@bookTickets')->middleware('auth');
+    Route::get('send_mail', 'TicketController@send_mail')->middleware('auth');
+    Route::get('send_sms', 'TicketController@send_sms')->middleware('auth');
+    Route::get('ticket', 'TicketController@getTicket')->middleware('auth');
+    Route::get('/', 'DashboardController@index')->middleware('auth');
 });
 
 
-Route::group(['middleware' => 'auth'], function () {
-    // Route::get('/', function () {
-    //     $users = factory(App\User::class, 5)->make();
-    //     return view('pages.home', compact('users'));
-    // })->name('dashboard');
-});
+
 
 Route::get('login', 'AuthController@index')->name('login');
 Route::post('post-login', 'AuthController@postLogin');

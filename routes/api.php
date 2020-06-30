@@ -35,12 +35,15 @@ Route::get('open', 'DataController@open');
 // Route::get('flights/locations', 'FlightController@get_locations');
 Route::resource('flights', 'FlightController');
 Route::resource('locations', 'LocationController');
+Route::resource('users', 'UserController');
+Route::resource('tickets', 'TicketController');
+
 Route::resource('airlines', 'AirlinesController');
+Route::post('tickets', 'TicketController@store');
 
 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('user', 'UserController@getAuthenticatedUser');
     Route::get('closed', 'DataController@closed');
     Route::resource('carts', 'CartController');
-    Route::resource('tickets', 'TicketController');
 });

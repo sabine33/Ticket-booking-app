@@ -10,8 +10,8 @@
                            </div>
 
                            <div class="form-group col-md-10">
-                               <label for="locationName">Location Name</label>
-                               <input type="text" class="form-control" id="locationName">
+                               <label for="name">Location Name</label>
+                               <input type="text" class="form-control" id="name">
                            </div>
                        </div>
                </div>
@@ -27,11 +27,11 @@
 
    @push('scripts')
    <script>
-       $('#flightModal').on('shown.bs.modal', function(event) {
+       $('#editModal').on('shown.bs.modal', function(event) {
            var button = $(event.relatedTarget)
            var id = button.data('id')
            var type = button.data('type')
-           let elements = ["#id", "#locationName"];
+           let elements = ["#id", "#name"];
            elements.forEach(elem => {
                $(elem).attr('disabled', type == 'view')
            })
@@ -57,17 +57,17 @@
            let id = event.dataset.id;
 
            let data = {
-               name: $("#locationName").val()
+               name: $("#name").val()
            }
            alert(JSON.stringify(data));
            if (type == 'create') {
-               axios.post('http://127.0.0.1:8000/api/locations/', data).then((response) => {
+               axios.post(API_URL + 'locations/', data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
                });
            } else if (type == 'edit') {
-               axios.put('http://127.0.0.1:8000/api/locations/' + id, data).then((response) => {
+               axios.put(API_URL + 'locations/' + id, data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
@@ -78,10 +78,10 @@
        }
 
        function fillElement(id) {
-           axios.get('http://127.0.0.1:8000/api/locations/' + id).then(response => {
+           axios.get(API_URL + 'locations/' + id).then(response => {
                let location = response.data;
                $('#id').val(location.id)
-               $('#locationName').val(location.name)
+               $('#name').val(location.name)
            }).catch(err => {
                alert(err)
            })

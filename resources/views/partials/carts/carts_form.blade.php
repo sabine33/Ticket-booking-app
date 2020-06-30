@@ -107,13 +107,13 @@
            }
            alert(JSON.stringify(data));
            if (type == 'create') {
-               axios.post('http://127.0.0.1:8000/api/carts/', data).then((response) => {
+               axios.post(API_URL + 'carts/', data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
                });
            } else if (type == 'edit') {
-               axios.put('http://127.0.0.1:8000/api/carts/' + id, data).then((response) => {
+               axios.put(API_URL + 'carts/' + id, data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
@@ -124,7 +124,7 @@
        }
 
        function fillElement(id) {
-           axios.get('http://127.0.0.1:8000/api/carts/' + id).then(response => {
+           axios.get(API_URL + 'carts/' + id).then(response => {
                //name,airlines_name,date,from_location,to_location,departure_time,flight_duration,ticket_count,flight_price,status
                let ticket = response.data;
                $('#id').val(ticket.id)

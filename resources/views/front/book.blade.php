@@ -1,13 +1,18 @@
-@extends('layouts.app')
+@extends('front.layout')
 
 @push('scripts')
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/js/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numbered/1.1.0/index.min.js"></script>
 @endpush
 @section('content')
 
-<div class="container-fluid">
+<div class="container" style="margin-top:80px;">
     <h1 class="h4 mb-2 text-gray-800">Book Tickets </h1>
-    <p class="mb-4"> Please use this section to book tickets ({{Auth::user()->email}}).</p>
+    <p class="mb-4"> Please use this section to book tickets.</p>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="row">
@@ -156,7 +161,7 @@
     //id,user_id,flight_id,adults_count,kids_count,passenger_name,passenger_email,passenger_address,passenger_phone,total_cost,departure_type,ticket_type,is_confirmed,status
     function onBookTicket() {
         let data = {
-            "user_id": "{{Auth::user()->id}}",
+            "user_id": 1,
             "flight_id": $("#flight_id").val(),
             "adults_count": $("#adults_count").val(),
             "kids_count": $("#kids_count").val(),
@@ -172,14 +177,20 @@
         }
 
         if (confirm("Are You Sure want to book this ticket ?")) {
-            console.log(JSON.stringify(data));
-            axios.post("http://127.0.0.1:8000/tickets", data).then(response => {
-                alert(JSON.stringify(response))
+            axios.post("http://127.0.0.1:8000/api/tickets", data).then(response => {
+                alert(`TICKET BOOKED SUCCESSFULLY ! Your Ticket is mailed to your email ! \nYour ticket is is ${response.data.id} and token is ${response.data.token}`);
+
+                console.log(response.data);
             }).catch(err => {
                 alert(JSON.stringify(err))
             })
         }
     }
+    $(document).ready(() => {
+        $("#flight_id").val(2).trigger('change')
+
+    })
+
     $("#flight_id").on('change', function(e) {
         fetchFlightDetails(e.target.value);
     });
@@ -188,7 +199,6 @@
     });
 
     $("#ticket_type").on('change', function(e) {
-
         calculateCostForDisplay();
     });
 
@@ -220,7 +230,7 @@
     }
 
     function fetchFlightDetails(id) {
-        axios.get("http://127.0.0.1:8000/flights/" + id).then((response) => {
+        axios.get("http://127.0.0.1:8000/api/flights/" + id).then((response) => {
             let flight = response.data;
             Object.assign(_flight, flight)
             $("#from_location_id").val(flight.from_location_id).trigger('change')

@@ -7,7 +7,7 @@
 
 <div class="container-fluid">
     <h1 class="h4 mb-2 text-gray-800">Book Tickets </h1>
-    <p class="mb-4"> Please use this section to book tickets ({{Auth::user()->email}}).</p>
+    <p class="mb-4"> Please use this section to book tickets.</p>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="row">
@@ -156,7 +156,7 @@
     //id,user_id,flight_id,adults_count,kids_count,passenger_name,passenger_email,passenger_address,passenger_phone,total_cost,departure_type,ticket_type,is_confirmed,status
     function onBookTicket() {
         let data = {
-            "user_id": "{{Auth::user()->id}}",
+            "user_id": "1",
             "flight_id": $("#flight_id").val(),
             "adults_count": $("#adults_count").val(),
             "kids_count": $("#kids_count").val(),

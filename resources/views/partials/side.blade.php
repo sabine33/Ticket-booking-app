@@ -76,11 +76,6 @@
 
 
     <li class="nav-item">
-        <a class="nav-link" href="/admin/search">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Search Flights</span></a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link" href="/admin/book-ticket">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Book Ticket</span></a>

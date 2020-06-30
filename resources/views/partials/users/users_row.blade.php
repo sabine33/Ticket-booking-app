@@ -4,6 +4,6 @@
     <td>{{$user->email}}</td>
     <td>{{$user->created_at}}</td>
     <td>
-        @include('partials.editor',['id' => $user->id])
+        @include('partials.editor',['id' => $user->id,'model'=>'users'])
     </td>
 </tr>

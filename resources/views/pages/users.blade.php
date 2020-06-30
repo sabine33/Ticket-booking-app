@@ -38,5 +38,4 @@
 
     @endsection
 
-    @include('partials.delete_dialog')
     @include('partials.users.users_form',['users'=>$users])

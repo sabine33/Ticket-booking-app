@@ -9,24 +9,55 @@
                                <input type="number" class="form-control" id="id" readonly>
                            </div>
                            <div class="form-group col-md-5">
-                               <label for="airlinesName">Airlines Name</label>
-                               <select id="airlinesName" class="form-control">
+                               <label for="airlines_id">Airlines Name</label>
+                               <select id="airlines_id" class="form-control">
                                    <option>Choose...</option>
                                    @foreach ($airlines as $airline)
                                    <option value="{{$airline->id}}"> {{ $airline->name }}</option>
                                    @endforeach
-
                                </select>
                            </div>
                            <div class="form-group col-md-5">
-                               <label for="flightDate">Flight Date</label>
-                               <input type="date" class="form-control" id="flightDate" placeholder="2021-12-12">
+                               <label for="departure_date">Departure Date</label>
+                               <input type="date" class="form-control" id="departure_date" placeholder="2021-12-12">
                            </div>
+
                        </div>
                        <div class="form-row">
-                           <div class="form-group col-md-6">
-                               <label for="fromLocation">From Location</label>
-                               <select id="fromLocation" class="form-control">
+                           <div class="form-group col-md-4">
+                               <label for="departure_time">Dep Time</label>
+                               <input type="time" class="form-control" id="departure_time" placeholder="">
+                           </div>
+                           <div class="form-group col-md-4">
+                               <label for="departure_type">Dep Type</label>
+                               <select id="departure_type" class="form-control">
+                                   <option>Choose...</option>
+                                   <option value="one_way" selected> One Way</option>
+                                   <option value="two_way"> Two Way</option>
+                               </select>
+                           </div>
+                           <div class="form-group col-md-4">
+                               <label for="ticket_type">Ticket Class</label>
+                               <select id="ticket_type" class="form-control">
+                                   <option>Choose...</option>
+                                   <option value="economy" selected>Economy</option>
+                                   <option value="business">Business</option>
+                               </select>
+                           </div>
+
+
+
+
+                       </div>
+
+                       <div class="form-row">
+                           <div class="form-group col-md-4">
+                               <label for="max_ticket_count">#of Tickets</label>
+                               <input type="number" class="form-control" id="max_ticket_count">
+                           </div>
+                           <div class="form-group col-md-4">
+                               <label for="from_location_id">From Location</label>
+                               <select id="from_location_id" class="form-control">
                                    <option>Choose...</option>
                                    @foreach ($locations as $location)
                                    <option value="{{$location->id}}"> {{ $location->name }}</option>
@@ -34,35 +65,40 @@
 
                                </select>
                            </div>
-                           <div class="form-group col-md-6">
-                               <label for="toLocation">To Location</label>
-                               <select id="toLocation" class="form-control">
+                           <div class="form-group col-md-4">
+                               <label for="to_location_id">To Location</label>
+                               <select id="to_location_id" class="form-control">
                                    <option>Choose...</option>
                                    @foreach ($locations as $location)
                                    <option value="{{$location->id}}"> {{ $location->name }}</option>
                                    @endforeach
                                </select>
                            </div>
-                       </div>
 
-                       <div class="form-row">
-                           <div class="form-group col-md-4">
-                               <label for="departureTime">Departure Time</label>
-                               <input type="time" class="form-control" id="departureTime" placeholder="12:20" value="12:00">
-                           </div>
-                           <div class="form-group col-md-4">
-                               <label for="flightDuration">Duration(Hours)</label>
-                               <input type="number" class="form-control" id="flightDuration" value="2">
-                           </div>
-                           <div class="form-group col-md-4">
-                               <label for="ticketCount">#s</label>
-                               <input type="number" class="form-control" id="ticketCount">
-                           </div>
                        </div>
                        <div class="form-row">
                            <div class="form-group col-md-4">
-                               <label for="flightPrice">Flight Price</label>
-                               <input type="number" class="form-control" id="flightPrice">
+                               <label for="flight_duration">Duration(Hours)</label>
+                               <input type="number" class="form-control" id="flight_duration" value="2">
+                           </div>
+                           <div class="form-group col-md-4">
+                               <label for="flight_price_economy">Economy Price</label>
+                               <input type="number" class="form-control" id="flight_price_economy">
+                           </div>
+                           <div class="form-group col-md-4">
+                               <label for="flight_price_business">Business Price</label>
+                               <input type="number" class="form-control" id="flight_price_business">
+                           </div>
+
+                       </div>
+                       <div class="form-row">
+                           <div class="form-group col-md-4">
+                               <label for="flight_price_both_way_ratio">2Way Ratio</label>
+                               <input type="text" class="form-control" id="flight_price_both_way_ratio">
+                           </div>
+                           <div class="form-group col-md-4">
+                               <label for="max_luggage_size">Max Luggage Size</label>
+                               <input type="number" class="form-control" id="max_luggage_size">
                            </div>
                            <div class="form-group col-md-4">
                                <div class="form-check">
@@ -87,15 +123,12 @@
 
    @push('scripts')
    <script>
-       $('#flightModal').on('shown.bs.modal', function(event) {
-           var button = $(event.relatedTarget) // Button that triggered the modal
-           var id = button.data('id') // Extract info from data-* attributes
+       let elements = ["#id", "#departure_date", "#departure_time", "#departure_type", "#ticket_type", "#max_ticket_count", "#from_location_id", "#to_location_id", "#airlines_id", "#status", "#flight_price_economy", "#flight_price_business", "#flight_price_both_way_ratio", "#flight_duration", "#max_luggage_size"];
+       $('#editModal').on('shown.bs.modal', function(event) {
+           var button = $(event.relatedTarget)
+           var id = button.data('id')
            var type = button.data('type')
 
-
-
-
-           let elements = ["#id", "#airlinesName", "#flightDate", "#fromLocation", "#toLocation", "#departureTime", "#flightDuration", "#ticketCount", "#flightPrice", "#status"];
            elements.forEach(elem => {
                $(elem).attr('disabled', type == 'view')
            })
@@ -113,38 +146,40 @@
 
 
            var modal = $(this);
-           //    modal.find('.modal-title').text("Are you sure want to delete ?")
-           //    modal.find('.modal-body').text(`Deleting will remove ${id} from database.`)
+
            modal.find('.ok-button').attr("data-id", id);
            modal.find('.ok-button').attr('data-type', type);
 
        })
-       //    protected $fillable = ['name', 'airlines_id', 'date', 'from_location_id', 'to_location_id', 'departure_time', 'flight_duration', 'flight_price', 'ticket_count', 'status'];
 
        function saveElement(event) {
            let type = event.dataset.type;
            let id = event.dataset.id;
 
            let data = {
-               airlines_id: $("#airlinesName").val(),
-               date: $("#flightDate").val(),
-               from_location_id: $('#fromLocation').val(),
-               to_location_id: $('#toLocation').val(),
-               departure_time: $("#departureTime").val(),
-               flight_duration: $("#flightDuration").val(),
-               flight_price: $("#flightPrice").val(),
-               ticket_count: $("#ticketCount").val(),
-               status: $("#status").val() == 'on' ? true : false
+               departure_date: $("#departure_date").val(),
+               departure_time: $("#departure_time").val(),
+               departure_type: $("#departure_type").val(),
+               max_ticket_count: $("#max_ticket_count").val(),
+               from_location_id: $("#from_location_id").val(),
+               to_location_id: $("#to_location_id").val(),
+               airlines_id: $("#airlines_id").val(),
+               status: $("#status").val(),
+               flight_price_economy: $("#flight_price_economy").val(),
+               flight_price_business: $("#flight_price_business").val(),
+               flight_price_both_way_ratio: $("#flight_price_both_way_ratio").val(),
+               flight_duration: $("#flight_duration").val(),
+               max_luggage_size: $("#max_luggage_size").val(),
            }
            alert(JSON.stringify(data));
            if (type == 'create') {
-               axios.post('http://127.0.0.1:8000/api/flights/', data).then((response) => {
+               axios.post(API_URL + 'flights/', data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
                });
            } else if (type == 'edit') {
-               axios.put('http://127.0.0.1:8000/api/flights/' + id, data).then((response) => {
+               axios.put(API_URL + 'flights/' + id, data).then((response) => {
                    alert(JSON.stringify(response.data))
                }).catch(err => {
                    alert(JSON.stringify(err))
@@ -155,19 +190,24 @@
        }
 
        function fillElement(id) {
-           axios.get('http://127.0.0.1:8000/api/flights/' + id).then(response => {
-               //name,airlines_name,date,from_location,to_location,departure_time,flight_duration,ticket_count,flight_price,status
+
+           axios.get(API_URL + 'flights/' + id).then(response => {
                let flight = response.data;
                $('#id').val(flight.id)
-               $('#airlinesName').val(flight.airlines.id).trigger('change')
-               $('#flightDate').val(flight.date)
-               $('#fromLocation').val(flight.from_location.id).trigger('change')
-               $('#toLocation').val(flight.to_location.id).trigger('change')
-               $('#departureTime').val(flight.departure_time)
-               $('#flightDuration').val(flight.flight_duration)
-               $('#ticketCount').val(flight.ticket_count)
-               $('#flightPrice').val(flight.flight_price)
-               $('#status').val(flight.status)
+               $('#departure_date').val(flight.departure_date)
+               $('#departure_time').val(flight.departure_time)
+               $('#departure_type').val(flight.departure_type).trigger('change')
+               $('#from_location_id').val(flight.from_location_id).trigger('change')
+               $('#to_location_id').val(flight.to_location_id).trigger('change')
+               $('#airlines_id').val(flight.airlines_id).trigger('change')
+               $('#status').prop('checked', flight.status)
+               $('#flight_price_economy').val(flight.flight_price_economy)
+
+               $('#flight_price_business').val(flight.flight_price_business)
+               $('#flight_price_both_way_ratio').val(flight.flight_price_both_way_ratio)
+               $('#flight_duration').val(flight.flight_duration)
+               $('#max_luggage_size').val(flight.max_luggage_size)
+               alert(JSON.stringify(flight))
 
            }).catch(err => {
                alert(err)
