@@ -14,6 +14,11 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
+    public function getAll()
+    {
+        $users = User::all();
+        return $users;
+    }
     public function index()
     {
         $users = User::all();
@@ -78,9 +83,9 @@ class UserController extends Controller
             'password' => Hash::make($request->get('password')),
         ]);
 
-        $token = JWTAuth::fromUser($user);
+        // $token = JWTAuth::fromUser($user);
 
-        return response()->json(compact('user', 'token'), 201);
+        return response()->json(compact('user'), 201);
     }
 
     public function getAuthenticatedUser()

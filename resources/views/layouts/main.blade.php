@@ -8,6 +8,8 @@
     <script>
         var API_URL = "{{$api_url}}";
     </script>
+    <script src="/js/swal.min.js"></script>
+
 </head>
 
 <body id="page-top">

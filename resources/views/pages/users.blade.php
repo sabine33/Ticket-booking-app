@@ -1,6 +1,10 @@
 @extends('layouts.main')
 @section('content')
 
+
+@include('partials.delete_dialog')
+@include('partials.users.users_form',['users'=>$users])
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -37,5 +41,3 @@
     </div>
 
     @endsection
-
-    @include('partials.users.users_form',['users'=>$users])

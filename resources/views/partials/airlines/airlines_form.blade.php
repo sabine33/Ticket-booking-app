@@ -2,7 +2,7 @@
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-body">
-                   <form>
+                   <form id="form">
                        <div class="form-row">
                            <div class="form-group col-md-2">
                                <label for="id">ID</label>
@@ -27,7 +27,7 @@
 
    @push('scripts')
    <script>
-       $('#flightModal').on('shown.bs.modal', function(event) {
+       $('#editModal').on('shown.bs.modal', function(event) {
            var button = $(event.relatedTarget)
            var id = button.data('id')
            var type = button.data('type')
@@ -53,6 +53,18 @@
        })
 
        function saveElement(event) {
+
+
+
+           if (!document.getElementById("form").checkValidity()) {
+               Swal.fire({
+                   icon: 'error',
+                   title: 'Oops...',
+                   text: 'Please fill form carefully!',
+               })
+               return false;
+           }
+
            let type = event.dataset.type;
            let id = event.dataset.id;
 
@@ -62,15 +74,27 @@
            alert(JSON.stringify(data));
            if (type == 'create') {
                axios.post(API_URL + 'airlines/', data).then((response) => {
-                   alert(JSON.stringify(response.data))
+                   Swal.fire({
+                       title: "Successfully saved",
+                       icon: "success"
+                   });
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       title: "Error on saving..",
+                       icon: "error"
+                   });
                });
            } else if (type == 'edit') {
                axios.put(API_URL + 'airlines/' + id, data).then((response) => {
-                   alert(JSON.stringify(response.data))
+                   Swal.fire({
+                       title: "Successfully saved",
+                       icon: "success"
+                   });
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       title: "Error on saving..",
+                       icon: "error"
+                   });
                });
            } else {
 
@@ -83,7 +107,10 @@
                $('#id').val(airlines.id)
                $('#name').val(airlines.name)
            }).catch(err => {
-               alert(err)
+               Swal.fire({
+                   title: "Error on loading..",
+                   icon: "error"
+               });
            })
        }
    </script>

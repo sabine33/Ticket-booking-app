@@ -2,69 +2,16 @@
 
 @section('content')
 
-<!-- Hero Area Section Begin -->
-
-<!-- Hero Area Section End -->
-
-<!-- Search Filter Section Begin -->
-<!-- <section class="search-filter other-page-filter">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <form action="#" class="check-form">
-                    <h4>Check Availability</h4>
-                    <div class="datepicker">
-                        <p>From</p>
-                        <input type="text" class="datepicker-1" value="dd / mm / yyyy">
-                        <img src="/img/calendar.png" alt="">
-                    </div>
-                    <div class="datepicker">
-                        <p>To</p>
-                        <input type="text" class="datepicker-2" value="dd / mm / yyyy">
-                        <img src="/img/calendar.png" alt="">
-                    </div>
-                    <div class="room-quantity">
-                        <div class="single-quantity">
-                            <p>Adults</p>
-                            <div class="pro-qty"><input type="text" value="0"></div>
-                        </div>
-                        <div class="single-quantity">
-                            <p>Children</p>
-                            <div class="pro-qty"><input type="text" value="0"></div>
-                        </div>
-                        <div class="single-quantity last">
-                            <p>Rooms</p>
-                            <div class="pro-qty"><input type="text" value="0"></div>
-                        </div>
-                    </div>
-                    <div class="room-selector">
-                        <p>Room</p>
-                        <select class="suit-select">
-                            <option>Eg. Master suite</option>
-                            <option value="">Double Room</option>
-                            <option value="">Single Room</option>
-                            <option value="">Special Room</option>
-                        </select>
-                    </div>
-                    <button type="submit">Go</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- Search Filter Section End -->
-<div class="hero-area set-bg other-page" style="margin-top:100px;margin-bottom:0px;">
-    <div class="container">
-        <div class="jumbotron my-3 bg-white" style="display:block">
-            <h2 style="text-transform: uppercase;">News</h2>
-        </div>
-    </div>
-
-</div>
 <!-- Blog Section Begin -->
+
 <section class="blog-section" style="padding-top:0px;">
 
     <div class="container">
+        <div class="row">
+            <div class="jumbotron bg-white" style="display:block">
+                <h2 style="text-transform:capitalize;">News</h2>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-8">
                 <div class="blog-item">
@@ -190,7 +137,7 @@
             </div>
         </div>
     </div>
-    < class="copyright">
+    <div class="copyright">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -217,19 +164,8 @@
         </div>
 
 
-        </div>
-</footer>
-<!-- Footer Section End -->
+    </div>
 
-<!-- Js Plugins -->
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.magnific-popup.min.js"></script>
-<script src="/js/jquery-ui.min.js"></script>
-<script src="/js/jquery.nice-select.min.js"></script>
-<script src="/js/jquery.slicknav.js"></script>
-<script src="/js/owl.carousel.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</footer>
+
 @endsection

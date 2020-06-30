@@ -14,6 +14,14 @@ use Illuminate\Support\Str;
 
 class TicketController extends Controller
 {
+
+    public function getAll()
+    {
+        $tickets = Ticket::with(['user', 'flight'])->get();
+        return $tickets;
+    }
+
+
     public function index()
     {
         $tickets = Ticket::with(['user', 'flight'])->get();
@@ -86,10 +94,10 @@ class TicketController extends Controller
         $ticket = Ticket::create($array);
         // $this->send_sms($phone, $ticket->id);
 
-        // if (isset($ticket)) {
-        //     Mail::to($email)->send(new TicketMail($ticket));
-        // } else {
-        // }
+        if (isset($ticket)) {
+            Mail::to($email)->send(new TicketMail($ticket));
+        } else {
+        }
         return $ticket;
     }
 

@@ -43,10 +43,16 @@
         let id = e.dataset.id;
         let model = e.dataset.model;
         axios.delete(API_URL + model + "/" + id).then(response => {
-            alert(JSON.stringify(response.data))
+            Swal.fire({
+                title: "Successfully deleted",
+                icon: "success"
+            })
             $('#deleteModal').modal('hide');
         }).catch(err => {
-            alert(err)
+            Swal.fire({
+                title: "Error on deleting...",
+                icon: "error"
+            })
         })
     };
 </script>

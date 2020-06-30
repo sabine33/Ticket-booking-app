@@ -14,14 +14,14 @@
 
 </head>
 
-<body>
+<body style="background-image:url('/img/ga.jpg');background-size:cover;">
     <div class="container-fluid">
         <div class="row no-gutter">
             <div class="col-lg-4 mx-auto">
                 <div class="login d-flex align-items-center py-5">
                     <div class="container">
                         <div class="row">
-                            <div class="col">
+                            <div class="card col">
                                 <h4 class="my-3">Administration Login</h4>
 
                                 <form action="{{url('post-login')}}" method="POST" id="logForm">
@@ -34,7 +34,7 @@
 
                                     <div class="form-label-group">
                                         <label for="inputEmail">Email address</label>
-                                        <input type="email" name="email" id="inputEmail" value="apple@ball.com" class="form-control" placeholder="Email address">
+                                        <input type="email" name="email" id="inputEmail" value="admin@test.com" class="form-control" placeholder="Email address">
                                         @if ($errors->has('email'))
                                         <span class="error">{{ $errors->first('email') }}</span>
                                         @endif
@@ -42,13 +42,13 @@
 
                                     <div class="form-label-group">
                                         <label for="inputPassword">Password</label>
-                                        <input type="password" name="password" value="appleball" id="inputPassword" class="form-control" placeholder="Password">
+                                        <input type="password" name="password" value="admin" id="inputPassword" class="form-control" placeholder="Password">
                                         @if ($errors->has('password'))
                                         <span class="error">{{ $errors->first('password') }}</span>
                                         @endif
                                     </div>
 
-                                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold my-2" type="submit">Sign In</button>
+                                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold my-4" type="submit">Sign In</button>
                                     <!-- <div class="text-center">If you have an account?
                                         <a class="small" href="{{url('registration')}}">Sign Up</a></div> -->
                                 </form>

@@ -5,6 +5,10 @@
     .carousel-item {
         transition: transform 2s ease, opacity .5s ease-out
     }
+
+    #flight_slide {
+        z-index: -1000;
+    }
 </style>
 <div id="flight_slide" class="carousel slide carousel-fade" data-ride="carousel" style="height:90vh;display:flex;">
 

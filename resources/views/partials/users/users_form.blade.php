@@ -2,7 +2,7 @@
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-body">
-                   <form>
+                   <form id="form">
                        <div class="form-row">
                            <div class="form-group col-md-2">
                                <label for="id">ID</label>
@@ -11,18 +11,18 @@
 
                            <div class="form-group col-md-10">
                                <label for="name">Name</label>
-                               <input type="text" class="form-control" id="name">
+                               <input type="text" class="form-control" id="name" required>
                            </div>
                        </div>
                        <div class="form-row">
                            <div class="form-group col-md-6">
                                <label for="email">Email</label>
-                               <input type="email" class="form-control" id="email">
+                               <input type="email" class="form-control" id="email" required>
                            </div>
 
                            <div class="form-group col-md-6">
                                <label for="password">Password</label>
-                               <input type="password" class="form-control" id="password">
+                               <input type="password" class="form-control" id="password" required>
                            </div>
                        </div>
 
@@ -66,6 +66,16 @@
        })
 
        function saveElement(event) {
+
+           if (!document.getElementById("form").checkValidity()) {
+               Swal.fire({
+                   icon: 'error',
+                   title: 'Oops...',
+                   text: 'Please fill form carefully!',
+               })
+               return false;
+           }
+
            let type = event.dataset.type;
            let id = event.dataset.id;
 
@@ -79,17 +89,35 @@
                    $(elem).val('');
                })
                axios.post(API_URL + 'users/', data).then((response) => {
-                   alert(JSON.stringify(response.data))
-                   alert("SAVED");
+                   //    alert(JSON.stringify(response.data))
+
+                   Swal.fire({
+                       title: 'Success...',
+                       text: 'User is created successfully. Please reload this page .!',
+                       icon: "success"
+                   })
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       icon: 'error',
+                       title: 'Oops...',
+                       text: 'Unable to create user!',
+                   })
+                   console.log(err)
                });
            } else if (type == 'edit') {
                axios.put(API_URL + 'users/' + id, data).then((response) => {
-                   alert(JSON.stringify(response.data))
-                   alert("SAVED")
+                   Swal.fire({
+                       title: 'Success...',
+                       text: 'User is created successfully. Please reload this page .!',
+                       icon: "success"
+                   })
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       icon: 'error',
+                       title: 'Oops...',
+                       text: 'Unable to create user!',
+                   })
+                   console.log(err)
                });
            } else {
 

@@ -7,6 +7,11 @@ use App\Models\Location;
 
 class LocationController extends Controller
 {
+    public function getAll()
+    {
+        $locations = Location::all();
+        return $locations;
+    }
     public function index()
     {
         $locations = Location::all();

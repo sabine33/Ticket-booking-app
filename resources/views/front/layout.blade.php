@@ -42,18 +42,18 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="/"><img src="/img/logo.jpg" alt=""></a>
+                    <a href="/"><img src="/img/logo.jpg" alt="" class="img-fluid"></a>
                 </div>
 
-                <nav class="main-menu mobile-menu">
+                <nav class="main-menu mobile-menu" style="z-index:10000">
                     <ul>
-                        <li class="{{ Request::path() === '/' ? 'current_page_item' : '' }}"><a href="/" accesskey="1" title="">Home</a></li>
+                        <li class="{{ Request::path() === '/' ? 'current_page_item' : '' }}" style="margin-left:100px;"><a href="/" accesskey="1" title="">Home</a></li>
                         <li class="{{ Request::path() === 'about' ? 'current_page_item' : '' }}"><a href="/about" accesskey="2" title="">About</a></li>
                         <li><a accesskey="3" title="">Flights</a>
                             <ul class="drop-menu">
-                                <li class="{{ Request::path() === 'flights' ? 'current_page_item' : '' }}"><a href="/booking-front/1">Booking Form</a></li>
-                                <li class="{{ Request::path() === 'details' ? 'current_page_item' : '' }}"><a href="/search">Flight Details</a></li>
-                                <li class="{{ Request::path() === 'cancel-ticket' ? 'current_page_item' : '' }}"><a href="/cancel-ticket">Cancel Flight</a></li>
+                                <li class="{{ Request::path() === 'flights' ? 'current_page_item' : '' }}"><a href="/booking-front/1">Book Ticket</a></li>
+                                <li class="{{ Request::path() === 'details' ? 'current_page_item' : '' }}"><a href="/search">Search Flight</a></li>
+                                <li class="{{ Request::path() === 'cancel-ticket' ? 'current_page_item' : '' }}"><a href="/cancel_flight">Cancel Flight</a></li>
 
                             </ul>
                         </li>
@@ -89,7 +89,7 @@
     </header>
 
 
-    <div style="margin-top:100px">
+    <div style="">
         @yield('content')
     </div>
 
@@ -105,7 +105,7 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script>
-        const API_URL = "{{$api_url}}";
+        var API_URL = "{{$api_url}}";
     </script>
     @stack('scripts')
 </body>

@@ -2,7 +2,7 @@
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-body">
-                   <form>
+                   <form id="form">
                        <div class="form-row">
                            <div class="form-group col-md-2">
                                <label for="id">ID</label>
@@ -10,7 +10,7 @@
                            </div>
                            <div class="form-group col-md-5">
                                <label for="airlines_id">Airlines Name</label>
-                               <select id="airlines_id" class="form-control">
+                               <select id="airlines_id" class="form-control" required>
                                    <option>Choose...</option>
                                    @foreach ($airlines as $airline)
                                    <option value="{{$airline->id}}"> {{ $airline->name }}</option>
@@ -19,18 +19,18 @@
                            </div>
                            <div class="form-group col-md-5">
                                <label for="departure_date">Departure Date</label>
-                               <input type="date" class="form-control" id="departure_date" placeholder="2021-12-12">
+                               <input type="date" class="form-control" id="departure_date" placeholder="2021-12-12" required>
                            </div>
 
                        </div>
                        <div class="form-row">
                            <div class="form-group col-md-4">
                                <label for="departure_time">Dep Time</label>
-                               <input type="time" class="form-control" id="departure_time" placeholder="">
+                               <input type="time" class="form-control" id="departure_time" placeholder="" required>
                            </div>
                            <div class="form-group col-md-4">
                                <label for="departure_type">Dep Type</label>
-                               <select id="departure_type" class="form-control">
+                               <select id="departure_type" class="form-control" required>
                                    <option>Choose...</option>
                                    <option value="one_way" selected> One Way</option>
                                    <option value="two_way"> Two Way</option>
@@ -38,7 +38,7 @@
                            </div>
                            <div class="form-group col-md-4">
                                <label for="ticket_type">Ticket Class</label>
-                               <select id="ticket_type" class="form-control">
+                               <select id="ticket_type" class="form-control" required>
                                    <option>Choose...</option>
                                    <option value="economy" selected>Economy</option>
                                    <option value="business">Business</option>
@@ -53,11 +53,11 @@
                        <div class="form-row">
                            <div class="form-group col-md-4">
                                <label for="max_ticket_count">#of Tickets</label>
-                               <input type="number" class="form-control" id="max_ticket_count">
+                               <input type="number" class="form-control" id="max_ticket_count" required>
                            </div>
                            <div class="form-group col-md-4">
                                <label for="from_location_id">From Location</label>
-                               <select id="from_location_id" class="form-control">
+                               <select id="from_location_id" class="form-control" required>
                                    <option>Choose...</option>
                                    @foreach ($locations as $location)
                                    <option value="{{$location->id}}"> {{ $location->name }}</option>
@@ -67,7 +67,7 @@
                            </div>
                            <div class="form-group col-md-4">
                                <label for="to_location_id">To Location</label>
-                               <select id="to_location_id" class="form-control">
+                               <select id="to_location_id" class="form-control" required>
                                    <option>Choose...</option>
                                    @foreach ($locations as $location)
                                    <option value="{{$location->id}}"> {{ $location->name }}</option>
@@ -79,26 +79,26 @@
                        <div class="form-row">
                            <div class="form-group col-md-4">
                                <label for="flight_duration">Duration(Hours)</label>
-                               <input type="number" class="form-control" id="flight_duration" value="2">
+                               <input type="number" class="form-control" id="flight_duration" value="2" required>
                            </div>
                            <div class="form-group col-md-4">
                                <label for="flight_price_economy">Economy Price</label>
-                               <input type="number" class="form-control" id="flight_price_economy">
+                               <input type="number" class="form-control" id="flight_price_economy" required>
                            </div>
                            <div class="form-group col-md-4">
                                <label for="flight_price_business">Business Price</label>
-                               <input type="number" class="form-control" id="flight_price_business">
+                               <input type="number" class="form-control" id="flight_price_business" required>
                            </div>
 
                        </div>
                        <div class="form-row">
                            <div class="form-group col-md-4">
                                <label for="flight_price_both_way_ratio">2Way Ratio</label>
-                               <input type="text" class="form-control" id="flight_price_both_way_ratio">
+                               <input type="text" class="form-control" id="flight_price_both_way_ratio" required>
                            </div>
                            <div class="form-group col-md-4">
                                <label for="max_luggage_size">Max Luggage Size</label>
-                               <input type="number" class="form-control" id="max_luggage_size">
+                               <input type="number" class="form-control" id="max_luggage_size" required>
                            </div>
                            <div class="form-group col-md-4">
                                <div class="form-check">
@@ -153,6 +153,16 @@
        })
 
        function saveElement(event) {
+
+           if (!document.getElementById("form").checkValidity()) {
+               Swal.fire({
+                   icon: 'error',
+                   title: 'Oops...',
+                   text: 'Please fill form carefully!',
+               })
+               return false;
+           }
+
            let type = event.dataset.type;
            let id = event.dataset.id;
 
@@ -174,15 +184,27 @@
            alert(JSON.stringify(data));
            if (type == 'create') {
                axios.post(API_URL + 'flights/', data).then((response) => {
-                   alert(JSON.stringify(response.data))
+                   Swal.fire({
+                       title: "Successfully saved",
+                       icon: "success"
+                   });
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       title: "Error on saving..",
+                       icon: "error"
+                   });
                });
            } else if (type == 'edit') {
                axios.put(API_URL + 'flights/' + id, data).then((response) => {
-                   alert(JSON.stringify(response.data))
+                   Swal.fire({
+                       title: "Successfully saved",
+                       icon: "success"
+                   });
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       title: "Error on saving..",
+                       icon: "error"
+                   });
                });
            } else {
 
@@ -207,10 +229,12 @@
                $('#flight_price_both_way_ratio').val(flight.flight_price_both_way_ratio)
                $('#flight_duration').val(flight.flight_duration)
                $('#max_luggage_size').val(flight.max_luggage_size)
-               alert(JSON.stringify(flight))
 
            }).catch(err => {
-               alert(err)
+               Swal.fire({
+                   title: "Error on loading..",
+                   icon: "error"
+               });
            })
        }
    </script>

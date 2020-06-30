@@ -29,8 +29,8 @@ Route::get('booking-front/{id}', 'FrontController@booking');
 Route::get('search', 'FrontController@search');
 Route::post('search', 'FrontController@searchFlights');
 Route::get('available_tickets', 'FrontController@getAvailableTickets');
-Route::get('cancel_ticket', 'FrontController@cancelTicket');
-Route::post('cancel_ticket', 'FrontController@cancelTicketPost');
+Route::get('cancel_flight', 'FrontController@cancelTicket');
+Route::post('cancel_flight', 'FrontController@cancelTicketPost');
 
 
 

@@ -13,7 +13,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <form>
+                    <form id="form">
                         <div class="form-row">
                             <div class="form-group col-md-2">
                                 <label for="id">ID</label>
@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="departure_type">Departure Type</label>
-                                <select id="departure_type" class="form-control">
+                                <select id="departure_type" class="form-control" required>
                                     <option>Choose...</option>
                                     <option value="one_way" selected> One Way</option>
                                     <option value="two_way"> Two Way</option>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="ticket_type">Ticket Class</label>
-                                <select id="ticket_type" class="form-control">
+                                <select id="ticket_type" class="form-control" required>
                                     <option>Choose...</option>
                                     <option value="economy" selected>Economy</option>
                                     <option value="business">Business</option>
@@ -37,18 +37,18 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="adults_count">(Adults)#</label>
-                                <input type="number" class="form-control" id="adults_count" min="1" value="1">
+                                <input type="number" class="form-control" id="adults_count" min="1" value="1" required>
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="kids_count">(Kids)#</label>
-                                <input type="number" class="form-control" id="kids_count" min="0" value="0">
+                                <input type="number" class="form-control" id="kids_count" min="0" value="0" required>
                             </div>
 
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="flight_id">Flight Name</label>
-                                <select id="flight_id" class="form-control">
+                                <select id="flight_id" class="form-control" required>
                                     <option>Choose...</option>
                                     @foreach ($flights as $flight)
                                     <option value="{{$flight->id}}"> {{ $flight->flight_name }}</option>
@@ -58,11 +58,11 @@
 
                             <div class="form-group col-md-3">
                                 <label for="available_tickets">Available Tickets</label>
-                                <input type="number" class="form-control" id="available_tickets" min="0" readonly>
+                                <input type="number" class="form-control" id="available_tickets" min="0" readonly required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="departure_date">Departure Date</label>
-                                <input type="date" class="form-control" id="departure_date" value="{{date('y-M-d')}}" disabled>
+                                <input type="date" class="form-control" id="departure_date" value="{{date('y-M-d')}}" disabled required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -155,6 +155,17 @@
     var _flight = {};
     //id,user_id,flight_id,adults_count,kids_count,passenger_name,passenger_email,passenger_address,passenger_phone,total_cost,departure_type,ticket_type,is_confirmed,status
     function onBookTicket() {
+
+
+        if (!document.getElementById("form").checkValidity()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill form carefully!'
+            })
+            return false;
+        }
+
         let data = {
             "user_id": "1",
             "flight_id": $("#flight_id").val(),
@@ -171,14 +182,39 @@
             "status": true
         }
 
-        if (confirm("Are You Sure want to book this ticket ?")) {
-            console.log(JSON.stringify(data));
-            axios.post(API_URL + "tickets", data).then(response => {
-                alert(JSON.stringify(response))
-            }).catch(err => {
-                alert(JSON.stringify(err))
-            })
-        }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit it!'
+        }).then((result) => {
+            if (result.value) {
+                $("#btnBookTicket").text("Booking...");
+                $("#btnBookTicket").prop('disabled', true);
+                axios.post(API_URL + "tickets", data).then(response => {
+                        Swal.fire({
+                            title: "Success",
+                            text: `TICKET BOOKED SUCCESSFULLY ! Ticket is mailed to respective email ! \ Ticket is is ${response.data.id} and token is ${response.data.token}`,
+                            icon: "success"
+                        })
+                    })
+                    .catch(err => {
+                        Swal.fire({
+                            title: "Error occured while saving ticket",
+                            icon: "warning"
+                        });
+                        console.log(err)
+
+                    })
+            } else {
+
+            }
+        })
+
+
     }
     $("#flight_id").on('change', function(e) {
         fetchFlightDetails(e.target.value);
@@ -214,7 +250,10 @@
             flight_cost = flight_cost * (departure_type === 'two_way' ? _flight.flight_price_both_way_ratio : 1);
             return flight_cost;
         } catch (ex) {
-            alert(ex);
+            Swal.fire({
+                title: "Error on calculating..",
+                icon: "error"
+            });
             return 0;
         }
     }
@@ -233,7 +272,10 @@
             calculateCostForDisplay();
 
         }).catch(err => {
-            alert(JSON.stringify(err));
+            Swal.fire({
+                title: "Error on loading data..",
+                icon: "error"
+            });
         })
     }
 </script>

@@ -7,6 +7,13 @@ use App\Models\Airlines;
 
 class AirlinesController extends Controller
 {
+
+
+    public function getAll()
+    {
+        return Airlines::all();
+    }
+
     public function index()
     {
         $airlines = Airlines::all();

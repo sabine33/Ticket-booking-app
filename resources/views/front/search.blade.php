@@ -1,98 +1,101 @@
 @extends ('front.layout')
 
 @section('content')
-<div class="container" style="margin-top:150px;">
-    <div class="row">
-        <div class="card shadow mb-4 mx-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form method="post" action="/search">
-                            {{csrf_field()}}
-                            <div class="form-row">
-                                <div class="form-group col-md-2">
-                                    <label for="departure_type">Departure Type</label>
-                                    <select id="departure_type" class="form-control" name="departure_type">
-                                        <option>Choose...</option>
-                                        <option value="one_way" selected> One Way</option>
-                                        <option value="two_way"> Two Way</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="from_location_id">From Location</label>
-                                    <select id="from_location_id" class="form-control" name="from_location_id">
-                                        <option>Choose...</option>
-                                        @foreach ($locations as $location)
-                                        <option value="{{$location->id}}"> {{ $location->name }}</option>
-                                        @endforeach
+<div style="background-image:url('/img/blur.jpg')">
 
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="to_location_id">To Location</label>
-                                    <select id="to_location_id" class="form-control" name="to_location_id">
-                                        <option>Choose...</option>
-                                        @foreach ($locations as $location)
-                                        <option value="{{$location->id}}"> {{ $location->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+    <div class="container" style="padding-top:40px;">
+        <div class="row">
+            <div class="card shadow mb-4 mx-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="post" action="/search">
+                                {{csrf_field()}}
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="departure_type">Departure Type</label>
+                                        <select id="departure_type" class="form-control" name="departure_type">
+                                            <option>Choose...</option>
+                                            <option value="one_way" selected> One Way</option>
+                                            <option value="two_way"> Two Way</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="from_location_id">From Location</label>
+                                        <select id="from_location_id" class="form-control" name="from_location_id">
+                                            <option>Choose...</option>
+                                            @foreach ($locations as $location)
+                                            <option value="{{$location->id}}"> {{ $location->name }}</option>
+                                            @endforeach
 
-                                <div class="form-group col-md-2">
-                                    <label for="ticket_count">(Numbers)#</label>
-                                    <input type="number" class="form-control" id="ticket_count" min="1" value="1" name="ticket_count">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="from_date">From Date</label>
-                                    <input type="date" class="form-control" id="from_date" value="{{date('Y-m-d')}}" name="from_date">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="to_date">To Date</label>
-                                    <input type="date" class="form-control" id="to_date" value="{{ date('Y-m-d', strtotime('+30 days')) }}" name="to_date">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <input type="submit" class="btn btn-primary btn-block" value="Search Flights" />
-                            </div>
-                        </form>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="to_location_id">To Location</label>
+                                        <select id="to_location_id" class="form-control" name="to_location_id">
+                                            <option>Choose...</option>
+                                            @foreach ($locations as $location)
+                                            <option value="{{$location->id}}"> {{ $location->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
+                                    <div class="form-group col-md-2">
+                                        <label for="ticket_count">(Numbers)#</label>
+                                        <input type="number" class="form-control" id="ticket_count" min="1" value="1" name="ticket_count">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="from_date">From Date</label>
+                                        <input type="date" class="form-control" id="from_date" value="{{date('Y-m-d')}}" name="from_date">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="to_date">To Date</label>
+                                        <input type="date" class="form-control" id="to_date" value="{{ date('Y-m-d', strtotime('+30 days')) }}" name="to_date">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <input type="submit" class="btn btn-primary btn-block" value="Search Flights" />
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-3 mx-auto">
-        <div class="card shadow mx-auto">
-            <div class="card-title">
-                <h4 class="p-2 text-center">Search Results : {{count($flights)}} tickets found</h4>
+        <div class="row mt-3 mx-auto">
+            <div class="card shadow mx-auto">
+                <div class="card-title">
+                    <h4 class="p-2 text-center bg-info text-white">Search Results : {{count($flights)}} tickets found</h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+                        <thead title="Search Results">
+                            <tr>
+                                <th>Airlines Name</th>
+                                <th>Flight Date</th>
+                                <th>From Location</th>
+                                <th>To Location</th>
+                                <th>Departure Time</th>
+                                <th>Flight Duration</th>
+                                <th>Tickets Available</th>
+                                <th>Price</th>
+                                <th>Book</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if(count($flights)>0)
+                            @each('front.flight_row', $flights, 'flight')
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
-
-            <div class="card-body">
-
-                <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
-                    <thead title="Search Results">
-                        <tr>
-                            <th>Airlines Name</th>
-                            <th>Flight Date</th>
-                            <th>From Location</th>
-                            <th>To Location</th>
-                            <th>Departure Time</th>
-                            <th>Flight Duration</th>
-                            <th>Tickets Available</th>
-                            <th>Price</th>
-                            <th>Book</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @if(count($flights)>0)
-                        @each('front.flight_row', $flights, 'flight')
-                        @endif
-                    </tbody>
-                </table>
-            </div>
-
         </div>
     </div>
 </div>

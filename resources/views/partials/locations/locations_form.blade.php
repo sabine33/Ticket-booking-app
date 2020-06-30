@@ -2,7 +2,7 @@
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-body">
-                   <form>
+                   <form id="form">
                        <div class="form-row">
                            <div class="form-group col-md-2">
                                <label for="id">ID</label>
@@ -11,7 +11,7 @@
 
                            <div class="form-group col-md-10">
                                <label for="name">Location Name</label>
-                               <input type="text" class="form-control" id="name">
+                               <input type="text" class="form-control" id="name" required>
                            </div>
                        </div>
                </div>
@@ -53,24 +53,43 @@
        })
 
        function saveElement(event) {
+           if (!document.getElementById("form").checkValidity()) {
+               Swal.fire({
+                   icon: 'error',
+                   title: 'Oops...',
+                   text: 'Please fill form carefully!',
+               })
+               return false;
+           }
            let type = event.dataset.type;
            let id = event.dataset.id;
 
            let data = {
                name: $("#name").val()
            }
-           alert(JSON.stringify(data));
            if (type == 'create') {
                axios.post(API_URL + 'locations/', data).then((response) => {
-                   alert(JSON.stringify(response.data))
+                   Swal.fire({
+                       title: "Successfully saved",
+                       icon: "success"
+                   });
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       title: "Error on saving..",
+                       icon: "error"
+                   });
                });
            } else if (type == 'edit') {
                axios.put(API_URL + 'locations/' + id, data).then((response) => {
-                   alert(JSON.stringify(response.data))
+                   Swal.fire({
+                       title: "Successfully saved",
+                       icon: "success"
+                   });
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       title: "Error on saving..",
+                       icon: "error"
+                   });
                });
            } else {
 
@@ -83,7 +102,10 @@
                $('#id').val(location.id)
                $('#name').val(location.name)
            }).catch(err => {
-               alert(err)
+               Swal.fire({
+                   title: "Error on loading...",
+                   icon: "error"
+               });
            })
        }
    </script>

@@ -25,7 +25,7 @@
 html,
 body {
     height: 100%;
-    font-family: "Montserrat Alternates", sans-serif;
+    /* font-family: "Montserrat Alternates", sans-serif; */
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
     background: none;
@@ -260,25 +260,25 @@ ol {
     background: #343333;
     padding-left: 30px;
     padding-right: 50px;
-    padding-top: 20px;
-    padding-bottom: 5px;
-    position: absolute;
+    /* padding-top: 20px; */
+    /* padding-bottom: 5px; */
+    /* position: absolute; */
     width: 100%;
     left: 0;
     top: 0;
     z-index: 999;
-    height: 130px;
+    height: 100px;
 }
 
 .inner-header .logo {
     float: left;
-    width: 350px;
-    padding-bottom: 30px;
-    padding-right: 20px;
+    width: 300px;
+    /*padding-bottom: 30px;
+    padding-right: 20px; */
 }
 
 .inner-header .logo a {
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .inner-header .nav-right {
@@ -291,7 +291,7 @@ ol {
 }
 
 .inner-header .main-menu {
-    float: center;
+    float: none;
     margin-right: 30px;
     display: block;
     padding-top: 20px;

@@ -2,7 +2,7 @@
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-body">
-                   <form>
+                   <form id="form">
                        <div class="form-row">
                            <div class="form-group col-md-2">
                                <label for="id">ID</label>
@@ -10,7 +10,7 @@
                            </div>
                            <div class="form-group col-md-5">
                                <label for="user_id">User</label>
-                               <select id="user_id" class="form-control">
+                               <select id="user_id" class="form-control" required>
                                    <option>Choose...</option>
                                    @foreach ($users as $user)
                                    <option value="{{$user->id}}"> {{ $user->name }}</option>
@@ -23,7 +23,7 @@
                        <div class="form-row">
                            <div class="form-group col-md-6">
                                <label for="flight_id">Flight </label>
-                               <select id="flight_id" class="form-control">
+                               <select id="flight_id" class="form-control" required>
                                    <option>Choose...</option>
                                    @foreach ($flights as $flight)
                                    <option value="{{$flight->id}}"> {{ $flight->airlines->name }}</option>
@@ -33,41 +33,41 @@
                            </div>
                            <div class="form-group col-md-3">
                                <label for="adults_count">Adults Count</label>
-                               <input type="number" class="form-control" id="adults_count">
+                               <input type="number" class="form-control" id="adults_count" required>
                            </div>
                            <div class="form-group col-md-3">
                                <label for="kids_count">Kids Count</label>
-                               <input type="number" class="form-control" id="kids_count">
+                               <input type="number" class="form-control" id="kids_count" required>
                            </div>
                        </div>
                        <div class="form-row">
 
                            <div class="form-group col-md-6">
                                <label for="passenger_name">Name</label>
-                               <input type="text" class="form-control" id="passenger_name">
+                               <input type="text" class="form-control" id="passenger_name" required>
                            </div>
                            <div class="form-group col-md-6">
                                <label for="passenger_email">Email</label>
-                               <input type="email" class="form-control" id="passenger_email">
+                               <input type="email" class="form-control" id="passenger_email" required>
                            </div>
                            <div class="form-group col-md-6">
                                <label for="passenger_address">Address</label>
-                               <input type="text" class="form-control" id="passenger_address">
+                               <input type="text" class="form-control" id="passenger_address" required>
                            </div>
                            <div class="form-group col-md-6">
                                <label for="passenger_phone">Phone(+977)</label>
-                               <input type="text" class="form-control" id="passenger_phone">
+                               <input type="text" class="form-control" id="passenger_phone" required>
                            </div>
                        </div>
                        <div class="form-row">
 
                            <div class="form-group col-md-6">
                                <label for="total_cost">Total Cost</label>
-                               <input type="number" class="form-control" id="total_cost">
+                               <input type="number" class="form-control" id="total_cost" required>
                            </div>
                            <div class="form-group col-md-5">
                                <label for="departure_type">Departure Type</label>
-                               <select id="departure_type" class="form-control">
+                               <select id="departure_type" class="form-control" required>
                                    <option>Choose...</option>
                                    <option value="one_way">One Way</option>
                                    <option value="two_way">Two Way</option>
@@ -75,7 +75,7 @@
                            </div>
                            <div class="form-group col-md-5">
                                <label for="ticket_type">Ticket Type</label>
-                               <select id="ticket_type" class="form-control">
+                               <select id="ticket_type" class="form-control" required>
                                    <option>Choose...</option>
                                    <option value="economy">Economy</option>
                                    <option value="business">Business</option>
@@ -87,7 +87,7 @@
                        <div class="form-row">
                            <div class="form-group col-md-4">
                                <div class="form-check">
-                                   <input class="form-check-input" type="checkbox" id="status">
+                                   <input class="form-check-input" type="checkbox" id="status" required>
                                    <label class="form-check-label" for="status">
                                        Is Ticket OK ?
                                    </label>
@@ -138,6 +138,16 @@
        })
 
        function saveElement(event) {
+
+           if (!document.getElementById("form").checkValidity()) {
+               Swal.fire({
+                   icon: 'error',
+                   title: 'Oops...',
+                   text: 'Please fill form carefully!',
+               })
+               return false;
+           }
+
            let type = event.dataset.type;
            let id = event.dataset.id;
 
@@ -157,18 +167,29 @@
                ticket_type: $('#ticket_type').val(),
                status: $("#status").val() == 'on' ? true : false
            }
-           alert(JSON.stringify(data));
            if (type == 'create') {
                axios.post(API_URL + 'tickets/', data).then((response) => {
-                   alert(JSON.stringify(response.data))
+                   Swal.fire({
+                       title: "Successfully saved",
+                       icon: "success"
+                   });
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       title: "Error on saving..",
+                       icon: "error"
+                   });
                });
            } else if (type == 'edit') {
                axios.put(API_URL + 'tickets/' + id, data).then((response) => {
-                   alert(JSON.stringify(response.data))
+                   Swal.fire({
+                       title: "Successfully saved",
+                       icon: "success"
+                   });
                }).catch(err => {
-                   alert(JSON.stringify(err))
+                   Swal.fire({
+                       title: "Error on saving..",
+                       icon: "error"
+                   });
                });
            } else {
 
@@ -194,7 +215,10 @@
                $('#status').prop('checked', ticket.status);
 
            }).catch(err => {
-               alert(err)
+               Swal.fire({
+                   title: "Error on loading..",
+                   icon: "error"
+               });
            })
        }
    </script>

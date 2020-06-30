@@ -26,24 +26,38 @@ Route::get('/', function () {
 
 // Route::post('login', 'Auth\LoginController@login');
 // Route::post('register', 'Auth\RegisterController@register');
+// Route::post('register', 'UserController@register');
+// Route::post('login', 'UserController@authenticate');
+// Route::get('open', 'DataController@open');
 
-Route::post('register', 'UserController@register');
-Route::post('login', 'UserController@authenticate');
-Route::get('open', 'DataController@open');
-
-// Route::resource('flights', 'FlightController');
-// Route::get('flights/locations', 'FlightController@get_locations');
+Route::get('locations', 'LocationController@getAll');
+Route::get('airlines', 'AirlinesController@getAll');
+Route::get('flights', 'FlightController@getAll');
 Route::resource('flights', 'FlightController');
+Route::resource('airlines', 'AirlinesController');
 Route::resource('locations', 'LocationController');
 Route::resource('users', 'UserController');
-Route::resource('tickets', 'TicketController');
 
-Route::resource('airlines', 'AirlinesController');
+
+
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('locations', 'LocationController@apiStore');
+    Route::post('airlines', 'AirlinesController@apiStore');
+    Route::post('flights', 'FlightController@apiStore');
+    Route::post('users', 'UserController@apiStore');
+    Route::get('tickets', 'TicketController@getAll');
+    Route::resource('tickets', 'TicketController');
+    Route::get('users', 'UserController@getAll');
+});
 Route::post('tickets', 'TicketController@store');
+Route::post('users', 'UserController@register');
 
 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('user', 'UserController@getAuthenticatedUser');
     Route::get('closed', 'DataController@closed');
+
     Route::resource('carts', 'CartController');
 });

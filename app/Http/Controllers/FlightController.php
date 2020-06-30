@@ -10,6 +10,12 @@ use App\Models\Location;
 
 class FlightController extends Controller
 {
+    public function getAll()
+    {
+        $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get();
+
+        return $flights;
+    }
     public function index()
     {
         $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get();
