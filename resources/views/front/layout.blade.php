@@ -104,7 +104,12 @@
     <script src="/js/jquery.slicknav.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
+    <script>
+        const API_URL = "{{$api_url}}";
 
+
+        alert(API_URL);
+    </script>
     @stack('scripts')
 </body>
 

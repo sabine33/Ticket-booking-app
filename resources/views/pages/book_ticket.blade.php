@@ -173,7 +173,7 @@
 
         if (confirm("Are You Sure want to book this ticket ?")) {
             console.log(JSON.stringify(data));
-            axios.post("http://127.0.0.1:8000/tickets", data).then(response => {
+            axios.post(API_URL + "tickets", data).then(response => {
                 alert(JSON.stringify(response))
             }).catch(err => {
                 alert(JSON.stringify(err))
@@ -220,7 +220,7 @@
     }
 
     function fetchFlightDetails(id) {
-        axios.get("http://127.0.0.1:8000/flights/" + id).then((response) => {
+        axios.get(API_URL + "flights/" + id).then((response) => {
             let flight = response.data;
             Object.assign(_flight, flight)
             $("#from_location_id").val(flight.from_location_id).trigger('change')

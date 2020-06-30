@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'test_url' => env('TEST_URL', 'http://default.url'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

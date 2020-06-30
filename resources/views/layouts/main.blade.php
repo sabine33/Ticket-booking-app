@@ -34,9 +34,7 @@
             @include('partials.logout')
 
 
-            <script>
-                const API_URL = "http://127.0.0.1:8000/api/";
-            </script>
+
             {{-- JS --}}
             @include('partials.scripts')
 
