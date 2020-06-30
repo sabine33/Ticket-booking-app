@@ -2,208 +2,206 @@
 
 @section('content')
 
-<div class="hero-area">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
-            <li data-target="#myCarousel" data-slide-to="4"></li>
-            <li data-target="#myCarousel" data-slide-to="5"></li>
-        </ol>
+<div id="flight_slide" class="carousel slide" data-ride="carousel" style="height:90vh;display:flex;">
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <img src="img/a.jpg" alt="" style="width:100%;">
-            </div>
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#flight_slide" data-slide-to="0" class="active"></li>
+        <li data-target="#flight_slide" data-slide-to="1"></li>
+        <li data-target="#flight_slide" data-slide-to="2"></li>
+        <li data-target="#flight_slide" data-slide-to="3"></li>
+        <li data-target="#flight_slide" data-slide-to="4"></li>
+        <li data-target="#flight_slide" data-slide-to="5"></li>
 
-            <div class="item">
-                <img src="img/r.jpg" alt="" style="width:100%;">
-            </div>
+    </ul>
 
-            <div class="item">
-                <img src="img/t.jpg" alt="" style="width:100%;">
-            </div>
-
-            <div class="item">
-                <img src="img/w.jpg" alt="" style="width:100%;">
-            </div>
-
-            <div class="item">
-                <img src="img/s.jpg" alt="" style="width:100%;">
-            </div>
-
-            <div class="item">
-                <img src="img/ww.jpg" alt="" style="width:100%;">
-            </div>
-
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/img/a.jpg" alt="Los Angeles" style="width:100%;object-fit:cover;">
         </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        <div class="carousel-item">
+            <img src="/img/r.jpg" alt="Chicago" style="width:100%;object-fit:cover;">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/t.jpg" alt="New York" style="width:100%;object-fit:cover;">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/w.jpg" alt="New York" style="width:100%;object-fit:cover;">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/s.jpg" alt="New York" style="width:100%;object-fit:cover;">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/ww.jpg" alt="New York" style="width:100%;object-fit:cover;">
+        </div>
     </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#flight_slide" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#flight_slide" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
 </div>
-<br>
+
+<div class="hero-area" style="">
 
 
 
 
-<!-- Intro Text Section Begin -->
-<section class="intro-section spad">
-    <div class="container">
-        <div class="row intro-text">
-            <div class="col-lg-6">
-                <div class="intro-left">
-                    <div class="section-title">
-                        <span>A Memorable Flight</span>
-                        <h2>Which leads you to<br />your destination.</h2>
-                    </div>
-                    <p>Being able to book an airfare online means you can do it any time of the day, wherever you are. You can book a flight at home, while you're in the office and even when you're on your way somewhere, via a laptop. By purchasing a flight online, you also don't have to worry finding a parking spot at the travel agent, waiting for service or feeling pressured to book a flight on the spot without thinking it through first.When you book a flight online, you have the freedom to shop around for the best price. Purchasing the ticket online means customers can check out many airlines before making their choice.</p>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="intro-right">
-                    <p>Book a flight online, and you'll be able to save a lot of time by checking in online. If you're flying domestic, you can check in as far in advance as 24 hours and as late as one hour before the flight.Changing or canceling a ticket is simple when you've booked an airfare online.This web application will help you to book your ticket easily. Hurry and login to our account.</p>
-                    <a href="/flights/create" class="primary-btn">To Book</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Intro Text Section End -->
-
-<!-- Facilities Section Begin -->
-<section class="facilities-section">
-    <div class="container-fluid">
-        <div class="row">
 
 
-            <div class="col-lg-6">
 
-                <div class="facilities-item set-bg" data-setbg="img/pk.jpg">
-                    <div class="fi-title">
-                        <h2>Trip to Pokhara</h2>
-                        <p>$30</p>
-                        <br><br><br><br><br><br><br><br>
-                        <a href="/flights/create" class="primary-btn">To Book</a>
+
+    <!-- Intro Text Section Begin -->
+    <section class="intro-section spad">
+        <div class="container">
+            <div class="row intro-text">
+                <div class="col-lg-6">
+                    <div class="intro-left">
+                        <div class="section-title">
+                            <span>A Memorable Flight</span>
+                            <h2>Which leads you to<br />your destination.</h2>
+                        </div>
+                        <p>Being able to book an airfare online means you can do it any time of the day, wherever you are. You can book a flight at home, while you're in the office and even when you're on your way somewhere, via a laptop. By purchasing a flight online, you also don't have to worry finding a parking spot at the travel agent, waiting for service or feeling pressured to book a flight on the spot without thinking it through first.When you book a flight online, you have the freedom to shop around for the best price. Purchasing the ticket online means customers can check out many airlines before making their choice.</p>
                     </div>
                 </div>
-            </div>
-
-
-
-            <div class="col-lg-6">
-                <div class="facilities-item set-bg fi-right" data-setbg="img/luu.jpg">
-                    <div class="fi-title">
-                        <h2>Trip to Lukla</h2>
-                        <p>$40</p>
-                        <br><br><br><br><br><br><br><br>
-                        <a href="/flights/create" class="primary-btn">To Book</a>
+                <div class="col-lg-6">
+                    <div class="intro-right">
+                        <p>Book a flight online, and you'll be able to save a lot of time by checking in online. If you're flying domestic, you can check in as far in advance as 24 hours and as late as one hour before the flight.Changing or canceling a ticket is simple when you've booked an airfare online.This web application will help you to book your ticket easily. Hurry and login to our account.</p>
+                        <a href="/booking-front/1" class="primary-btn">To Book</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Facilities Section End -->
-<!-- <div class="container">
+    </section>
+    <!-- Intro Text Section End -->
+
+    <!-- Facilities Section Begin -->
+    <section class="facilities-section">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <div class="col-lg-6">
+
+                    <div class="facilities-item set-bg" data-setbg="/img/pk.jpg">
+                        <div class="fi-title">
+                            <h2>Trip to Pokhara</h2>
+                            <p>$30</p>
+                            <br><br><br><br><br><br><br><br>
+                            <a href="/booking-front/1" class="primary-btn">To Book</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-6">
+                    <div class="facilities-item set-bg fi-right" data-setbg="/img/luu.jpg">
+                        <div class="fi-title">
+                            <h2>Trip to Lukla</h2>
+                            <p>$40</p>
+                            <br><br><br><br><br><br><br><br>
+                            <a href="/booking-front/1" class="primary-btn">To Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Facilities Section End -->
+    <!-- <div class="container">
   <div class="row">
 
   <div class="column">
-    <img src="img/pk.jpg" style="width:100%" >
+    <img src="/img/pk.jpg" style="width:100%" >
   </div>
 
   <div class="column">
-    <img src="img/ch.jpg"  style="width:100%">
+    <img src="/img/ch.jpg"  style="width:100%">
   </div>
 
   <div class="column">
-    <img src="img/luu.jpg" style="width:100%">
+    <img src="/img/luu.jpg" style="width:100%">
   </div>
   
 </div>
 </div> -->
 
-<!-- Testimonial Section Begin -->
-<section class="testimonial-section spad">
-    <div class="container">
-        <div class="row">
-            <div class="section-title">
-                <h2>Guestbook</h2>
+    <!-- Testimonial Section Begin -->
+    <section class="testimonial-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2>Guestbook</h2>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="testimonial-item">
-                    <div class="ti-time">
-                        02 / 02 / 2020
-                    </div>
-                    <h4>Easy to book and resonable price</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <p>It was so easy to search flight of particular date and the ticket price was also reasonable of that time. I will use this application more in future.</p>
-                    <div class="ti-author">
-                        <div class="author-pic">
-                            <img src="img/author-1.png" alt="">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
+                        <div class="ti-time">
+                            02 / 02 / 2020
                         </div>
-                        <div class="author-text">
-                            <h6>Rohit Thapa<span>Kathmandu</span></h6>
+                        <h4>Easy to book and resonable price</h4>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p>It was so easy to search flight of particular date and the ticket price was also reasonable of that time. I will use this application more in future.</p>
+                        <div class="ti-author">
+                            <div class="author-pic">
+                                <img src="/img/author-1.png" alt="">
+                            </div>
+                            <div class="author-text">
+                                <h6>Rohit Thapa<span>Kathmandu</span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
+                        <div class="ti-time">
+                            08 / 12 / 2018
+                        </div>
+                        <h4>Time Saver</h4>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p>It has saved my time.I can book my ticket from anywhere with the help of internet without waiting a long queue in airport or visiting any travel agency. </p>
+                        <div class="ti-author">
+                            <div class="author-pic">
+                                <img src="/img/author-2.png" alt="">
+                            </div>
+                            <div class="author-text">
+                                <h6>Preeti Jha<span>Nepalgunj</span></h6>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="testimonial-item">
-                    <div class="ti-time">
-                        08 / 12 / 2018
-                    </div>
-                    <h4>Time Saver</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <p>It has saved my time.I can book my ticket from anywhere with the help of internet without waiting a long queue in airport or visiting any travel agency. </p>
-                    <div class="ti-author">
-                        <div class="author-pic">
-                            <img src="img/author-2.png" alt="">
-                        </div>
-                        <div class="author-text">
-                            <h6>Preeti Jha<span>Nepalgunj</span></h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-</section>
-<!-- Testimonial Section End -->
+    </section>
+    <!-- Testimonial Section End -->
 
-<!-- Video Section Begin -->
-<div class="video-section">
-    <div class="video-bg set-bg" data-setbg="img/pppp.jpg" width="100%"></div>
-    <!--  <div class="container"> -->
-    <!-- <div class="video-text set-bg" data-setbg="img/video-inside-bg.jpg">
+    <!-- Video Section Begin -->
+    <div class="video-section">
+        <div class="video-bg set-bg" data-setbg="/img/pppp.jpg" width="100%"></div>
+        <!--  <div class="container"> -->
+        <!-- <div class="video-text set-bg" data-setbg="/img/video-inside-bg.jpg">
                 <a href="https://www.youtube.com/watch?v=j56YlCXuPFU" class="pop-up"><i class="fa fa-play"></i></a>
             </div> -->
-</div>
+    </div>
 </div>
 <!-- Video Section End -->
 
@@ -224,22 +222,22 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="about-img">
-                            <img src="img/lu.jpg" alt="" height="191px">
+                            <img src="/img/lu.jpg" alt="" height="191px">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="about-img">
-                            <img src="img/ti.jpg" alt="" height="191px">
+                            <img src="/img/ti.jpg" alt="" height="191px">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="about-img">
-                            <img src="img/el.jpg" alt="" height="195px">
+                            <img src="/img/el.jpg" alt="" height="195px">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="about-img">
-                            <img src="img/ga.webp" alt="" height="195px">
+                            <img src="/img/ga.webp" alt="" height="195px">
                         </div>
                     </div>
                 </div>
@@ -256,7 +254,7 @@
             <div class="col-lg-4">
                 <div class="footer-item">
                     <div class="footer-logo">
-                        <a href="#"><img src="img/logo.jpg" alt=""></a>
+                        <a href="#"><img src="/img/logo.jpg" alt=""></a>
                     </div>
                     <p>We will help you to book your tickets from any corner of the world without the help of third party.</p>
                 </div>
@@ -272,7 +270,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <img src="img/logo.jpg" width="200px" align="left">
+                                        <img src="/img/logo.jpg" width="200px" align="left">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -295,8 +293,8 @@
                 <div class="footer-item">
                     <h5>Contact Info</h5>
                     <ul>
-                        <li><img src="img/placeholder.png" alt="">Thapathali,Kathmandu<br />Nepal</li>
-                        <li><img src="img/phone.png" alt="">+977 9810001111</li>
+                        <li><img src="/img/placeholder.png" alt="">Thapathali,Kathmandu<br />Nepal</li>
+                        <li><img src="/img/phone.png" alt="">+977 9810001111</li>
                     </ul>
                 </div>
             </div>

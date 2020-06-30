@@ -2,12 +2,18 @@
 @section ('content')
 
 <!-- Hero Area Section Begin -->
-<div class="hero-area set-bg other-page" data-setbg="img/vvvv.jpg" style="width: 100%">
+<div class="hero-area set-bg other-page" style="margin-top:100px;margin-bottom:0px;">
+    <div class="container">
+        <div class="jumbotron my-3 bg-white" style="display:block">
+            <h2 style="text-transform: uppercase;">Contact</h2>
+        </div>
+    </div>
+
 </div>
 <!-- Hero Area Section End -->
 
 <!-- Search Filter Section Begin -->
-<section class="search-filter other-page-filter">
+<!-- <section class="search-filter other-page-filter">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -50,11 +56,11 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Search Filter Section End -->
 
 <!-- Contact Section Begin -->
-<section class="contact-section spad">
+<section class="contact-section spad" style="padding-top:0px;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

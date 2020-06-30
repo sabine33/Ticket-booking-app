@@ -1,7 +1,7 @@
 @extends ('front.layout')
 
 @section('content')
-<div class="container-fluid" style="margin-top:80px;">
+<div class="container-fluid" style="margin-top:150px;">
     <div class="row">
         <div class="card shadow mb-4 mx-3">
             <div class="card-body">
