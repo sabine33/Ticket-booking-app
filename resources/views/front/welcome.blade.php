@@ -1,8 +1,12 @@
 @extends ('front.layout')
 
 @section('content')
-
-<div id="flight_slide" class="carousel slide" data-ride="carousel" style="height:90vh;display:flex;">
+<style>
+    .carousel-item {
+        transition: transform 2s ease, opacity .5s ease-out
+    }
+</style>
+<div id="flight_slide" class="carousel slide carousel-fade" data-ride="carousel" style="height:90vh;display:flex;">
 
     <!-- Indicators -->
     <ul class="carousel-indicators">

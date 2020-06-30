@@ -1,7 +1,7 @@
 @extends ('front.layout')
 
 @section('content')
-<div class="container-fluid" style="margin-top:150px;">
+<div class="container" style="margin-top:150px;">
     <div class="row">
         <div class="card shadow mb-4 mx-3">
             <div class="card-body">
@@ -64,7 +64,7 @@
     <div class="row mt-3 mx-auto">
         <div class="card shadow mx-auto">
             <div class="card-title">
-                <h4 class="px-2">Search Results : {{count($flights)}} tickets found</h4>
+                <h4 class="p-2 text-center">Search Results : {{count($flights)}} tickets found</h4>
 
             </div>
 
@@ -88,8 +88,6 @@
                     <tbody>
                         @if(count($flights)>0)
                         @each('front.flight_row', $flights, 'flight')
-                        @else
-                        No Tickets Found
                         @endif
                     </tbody>
                 </table>
@@ -113,7 +111,7 @@
 <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<!-- <script src="/js/demo/datatables-demo.js"></script> -->
+<script src="/js/demo/datatables-demo.js"></script>
 
 <script>
     function onSearchFlights() {

@@ -10,7 +10,7 @@
 @endpush
 @section('content')
 
-<div class="container" style="margin-top:80px;">
+<div class="container" style="margin-top:150px;">
     <h1 class="h4 mb-2 text-gray-800">Book Tickets </h1>
     <p class="mb-4"> Please use this section to book tickets.</p>
     <div class="card shadow mb-4">
