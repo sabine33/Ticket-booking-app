@@ -26,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        view()->share('api_url', env('API_URL', 'http://127.0.0.1:8000/api/'));
+        view()->share('api_url', env('API_URL', 'http://meroflights.herokuapp.com//api/'));
     }
 }
