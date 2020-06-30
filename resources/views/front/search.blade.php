@@ -3,7 +3,7 @@
 @section('content')
 <div style="background-image:url('/img/blur.jpg')">
 
-    <div class="container" style="padding-top:40px;">
+    <div class="container" style="padding:40px 0px;">
         <div class="row">
             <div class="card shadow mb-4 mx-3">
                 <div class="card-body">

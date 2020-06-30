@@ -14,7 +14,7 @@
 @section('content')
 <div style="background-image:url('/img/blur.jpg')">
 
-    <div class="container pt-2" style="">
+    <div class="container py-3" style="">
         <h1 class="h4 mb-2 text-white">Book Tickets </h1>
         <p class="mb-4"> Please use this section to book tickets.</p>
         <div class="card shadow mb-4 bg-info">
