@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Location;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class LocationsTableSeeder extends Seeder
@@ -14,7 +15,7 @@ class LocationsTableSeeder extends Seeder
     {
         Location::truncate();
 
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
 
         for ($i = 0; $i < 50; $i++) {
             Location::create([

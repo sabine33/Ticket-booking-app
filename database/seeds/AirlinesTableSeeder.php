@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Airlines;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class AirlinesTableSeeder extends Seeder
@@ -14,7 +15,7 @@ class AirlinesTableSeeder extends Seeder
     {
         Airlines::truncate();
 
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
 
         for ($i = 0; $i < 50; $i++) {
             Airlines::create([

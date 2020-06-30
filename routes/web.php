@@ -45,7 +45,7 @@ Route::prefix('admin')->group(function () {
     Route::get('send_mail', 'TicketController@send_mail')->middleware('auth');
     Route::get('send_sms', 'TicketController@send_sms')->middleware('auth');
     Route::get('ticket', 'TicketController@getTicket')->middleware('auth');
-    Route::get('/', 'DashboardController@index')->middleware('auth');
+    Route::get('/', 'DashboardController@index')->middleware('auth')->name('dashboard');
 });
 
 

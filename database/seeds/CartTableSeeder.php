@@ -3,6 +3,7 @@
 use App\Models\Flight;
 use App\Models\Cart;
 use App\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 
@@ -17,7 +18,7 @@ class CartTableSeeder extends Seeder
     {
         Cart::truncate();
 
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
 
         // And now, let's create a few articles in our database:
         //                'flight_id', 'user_id', 'ticket_count', 'cart_status', 'status'

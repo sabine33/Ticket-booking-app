@@ -3,6 +3,7 @@
 use App\Models\Flight;
 use App\Models\Ticket;
 use App\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 
@@ -17,7 +18,7 @@ class TicketsTableSeeder extends Seeder
     {
         Ticket::truncate();
 
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
         // id	user_id	flight_id	adults_count	kids_count	passenger_name	passenger_email	passenger_address	total_cost	departure_type	ticket_type	is_confirmed	status	created_at	updated_at
         // And now, let's create a few articles in our database:
         for ($i = 0; $i < 50; $i++) {

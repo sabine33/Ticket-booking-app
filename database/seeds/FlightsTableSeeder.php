@@ -4,6 +4,7 @@ use App\Models\Airlines;
 use App\Models\Flight;
 use App\Models\Location;
 use App\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class FlightsTableSeeder extends Seeder
@@ -17,7 +18,7 @@ class FlightsTableSeeder extends Seeder
     {
         Flight::truncate();
 
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
         // id	departure_date	departure_time	departure_type	max_ticket_count	max_luggage_size	flight_duration	flight_price_economy	flight_price_business	flight_price_both_way_ratio	user_id	from_location_id	to_location_id	airlines_id	status	created_at	updated_at
 
         for ($i = 0; $i < 50; $i++) {
