@@ -53,6 +53,8 @@
                             <ul class="drop-menu">
                                 <li class="{{ Request::path() === 'flights' ? 'current_page_item' : '' }}"><a href="/booking-front/1">Booking Form</a></li>
                                 <li class="{{ Request::path() === 'details' ? 'current_page_item' : '' }}"><a href="/search">Flight Details</a></li>
+                                <li class="{{ Request::path() === 'cancel-ticket' ? 'current_page_item' : '' }}"><a href="/cancel-ticket">Cancel Flight</a></li>
+
                             </ul>
                         </li>
                         <li class="{{ Request::path() === 'news' ? 'current_page_item' : '' }}"><a href="/news" accesskey="4" title="">News</a></li>
