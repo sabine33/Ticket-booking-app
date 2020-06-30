@@ -106,9 +106,6 @@
     <script src="/js/main.js"></script>
     <script>
         const API_URL = "{{$api_url}}";
-
-
-        alert(API_URL);
     </script>
     @stack('scripts')
 </body>

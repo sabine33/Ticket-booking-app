@@ -177,7 +177,7 @@
         }
 
         if (confirm("Are You Sure want to book this ticket ?")) {
-            axios.post("http://127.0.0.1:8000/api/tickets", data).then(response => {
+            axios.post(API_URL + "tickets", data).then(response => {
                 alert(`TICKET BOOKED SUCCESSFULLY ! Your Ticket is mailed to your email ! \nYour ticket is is ${response.data.id} and token is ${response.data.token}`);
 
                 console.log(response.data);
@@ -230,7 +230,7 @@
     }
 
     function fetchFlightDetails(id) {
-        axios.get("http://127.0.0.1:8000/api/flights/" + id).then((response) => {
+        axios.get(API_URL + "flights/" + id).then((response) => {
             let flight = response.data;
             Object.assign(_flight, flight)
             $("#from_location_id").val(flight.from_location_id).trigger('change')

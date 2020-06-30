@@ -5,8 +5,9 @@
     @include('partials.head')
     {{-- CSS --}}
     @include('partials.styles')
-
-
+    <script>
+        var API_URL = "{{$api_url}}";
+    </script>
 </head>
 
 <body id="page-top">
@@ -37,6 +38,7 @@
 
             {{-- JS --}}
             @include('partials.scripts')
+
 
 
         </div>
