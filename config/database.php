@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Str;
 
-$DATABASE_URL = parse_url("mysql://baba442d812fe4:f49412c6@us-cdbr-east-02.cleardb.com/heroku_89a401f10e3df16?reconnect=true");
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
 return [
 
     /*
@@ -16,7 +20,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql_cloud'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
 
     /*
@@ -36,7 +40,16 @@ return [
     */
 
     'connections' => [
-
+        'cleardb' => array(
+            'driver' => 'mysql',
+            'host' => $host,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+        ),
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
@@ -58,36 +71,20 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        'mysql_cloud' => [
-            'driver' => 'mysql',
-            'host' => $DATABASE_URL["host"],
-            'port' => $DATABASE_URL["port"] ?? 3306,
-            'database' => ltrim($DATABASE_URL["path"], "/"),
-            'username' => $DATABASE_URL["user"],
-            'password' => $DATABASE_URL["pass"],
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'require',
-        ],
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
+            'port' => env('DB_PORT', '3308'),
+            'database' => env('DB_DATABASE', 'flightapp'),
+            'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            'prefix_indexes' => false,
+            'strict' => false,
+            'engine' => 'innoDB'
         ],
 
         'pgsql' => [

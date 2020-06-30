@@ -35,14 +35,14 @@ class CreateTicketsTable extends Migration
             $table->string('token');
 
 
-            // $table->foreign('user_id')
-            //     ->references('id')
-            //     ->on('users')->onDelete('set null');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')->onDelete('cascade');
 
-            // $table->foreign('flight_id')
-            //     ->references('id')
-            //     ->on('flights')
-            //     ->onDelete('set null');
+            $table->foreign('flight_id')
+                ->references('id')
+                ->on('flights')
+                ->onDelete('cascade');
 
             $table->boolean('status')->default(true);
             $table->timestamps();

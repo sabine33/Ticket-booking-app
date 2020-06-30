@@ -30,20 +30,21 @@ class CreateFlightsTable extends Migration
             $table->float('flight_price_both_way_ratio')->unsigned();
 
 
-            $table->integer('from_location_id')->unsigned()->nullable();
-            $table->integer('to_location_id')->unsigned()->nullable();
-            $table->integer('airlines_id')->unsigned()->nullable();
+            $table->integer('from_location_id')->unsigned();
+            $table->integer('to_location_id')->unsigned();
+            $table->integer('airlines_id')->unsigned();
 
-            // $table->foreign('from_location_id')
-            //     ->references('id')
-            //     ->on('locations');
-            // $table->foreign('to_location_id')
-            //     ->references('id')
-            //     ->on('locations');
+            $table->foreign('from_location_id')
+                ->references('id')
+                ->on('locations')->onDelete('cascade');
+            $table->foreign('to_location_id')
+                ->references('id')
+                ->on('locations')->onDelete('cascade');
 
-            // $table->foreign('airlines_id')
-            //     ->references('id')
-            //     ->on('airlines');
+            $table->foreign('airlines_id')
+                ->references('id')
+                ->on('airlines')
+                ->onDelete('cascade');
 
             $table->boolean('status')->default(true);
             $table->timestamps();
