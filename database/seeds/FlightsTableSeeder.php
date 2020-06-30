@@ -33,7 +33,6 @@ class FlightsTableSeeder extends Seeder
                 'flight_price_both_way_ratio' => $faker->numberBetween(1.5, 2),
                 'airlines_id' => User::pluck('id')->random(),
                 'status' => $faker->boolean,
-                'user_id' => User::pluck('id')->random(),
                 'airlines_id' => Airlines::pluck('id')->random(),
                 'from_location_id' =>
                 Location::pluck('id')->random(),

@@ -31,6 +31,7 @@ class CreateTicketsTable extends Migration
             $table->string('departure_type');
             $table->string('ticket_type');
             $table->boolean('is_confirmed');
+            $table->string('token');
 
 
             $table->foreign('user_id')

@@ -27,7 +27,6 @@ class CreateFlightsTable extends Migration
             $table->integer('flight_price_economy')->unsigned();
             $table->integer('flight_price_business')->unsigned();
             $table->float('flight_price_both_way_ratio')->unsigned();
-            $table->integer('user_id')->unsigned();
 
 
             $table->integer('from_location_id')->unsigned();
