@@ -6,9 +6,10 @@
     <td>{{$flight->departure_time}}</td>
     <td>{{$flight->flight_duration}}</td>
     <td>{{$flight->available_tickets}}</td>
-    <td>{{$flight->is_international}}</td>
 
     <td class="font-weight-bold">{{$flight->flight_price_economy}}-{{$flight->flight_price_business}}</td>
+    <td>{{$flight->is_international?'YES':'NO'}}</td>
+
     <td>
         <ul class="list-inline my-1 d-flex">
             <li class="list-inline-item">

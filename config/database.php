@@ -20,7 +20,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'cleardb'),
+    'default' => env('DB_CONNECTION', 'mysql2'),
 
 
     /*
@@ -48,7 +48,8 @@ return [
             'password' => $password,
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
         ),
         'sqlite' => [
             'driver' => 'sqlite',
@@ -85,6 +86,19 @@ return [
             'prefix_indexes' => false,
             'strict' => false,
             'engine' => 'innoDB'
+        ], 'mysql2' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
         ],
 
         'pgsql' => [

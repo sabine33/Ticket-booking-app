@@ -304,10 +304,11 @@
             calculateCostForDisplay();
 
         }).catch(err => {
-            Swal.fire({
-                title: "Error on loading..",
-                icon: "error"
-            });
+            // Swal.fire({
+            //     title: "Error on loading..",
+            //     icon: "error"
+            // });
+            alert(JSON.stringify(err))
         })
     }
 </script>
