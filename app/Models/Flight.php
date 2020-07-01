@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Flight extends Model
 {
-    protected $fillable = ['departure_date', 'departure_time', 'departure_type', 'max_ticket_count', 'max_luggage_size', 'flight_duration', 'flight_price_economy', 'flight_price_business', 'flight_price_both_way_ratio', 'from_location_id', 'to_location_id', 'airlines_id', 'status'];
+    protected $fillable = ['departure_date', 'departure_time', 'departure_type', 'max_ticket_count', 'max_luggage_size', 'flight_duration', 'flight_price_economy', 'flight_price_business', 'flight_price_both_way_ratio', 'from_location_id', 'to_location_id', 'airlines_id', 'status', 'is_international'];
 
     protected $appends = ['flight_name', 'available_tickets'];
 

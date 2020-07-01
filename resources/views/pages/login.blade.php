@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{url('style.css')}}">
-
 </head>
 
 <body style="background-image:url('/img/ga.jpg');background-size:cover;">
@@ -22,8 +21,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="card col">
-                                <h4 class="my-3">Administration Login</h4>
-
+                                <a href="/">
+                                    <h4 class="my-3 text-info text-center">Flights Admin Login</h4>
+                                </a>
+                                <img src="/img/logo.jpg" style="display:inline-block;width:200px;text-align:center;margin:0px auto" class="text-center my-2" />
                                 <form action="{{url('post-login')}}" method="POST" id="logForm">
                                     {{ csrf_field() }}
                                     @if(session()->has('message'))

@@ -38,7 +38,8 @@ class FlightsTableSeeder extends Seeder
                 'from_location_id' =>
                 Location::pluck('id')->random(),
                 'to_location_id' =>
-                Location::pluck('id')->random()
+                Location::pluck('id')->random(),
+                'is_international' => $faker->boolean
             ]);
         }
     }

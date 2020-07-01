@@ -22,6 +22,7 @@ class CreateFlightsTable extends Migration
             $table->date('departure_date');
             $table->time('departure_time');
             $table->string('departure_type');
+
             $table->integer('max_ticket_count')->unsigned();
             $table->integer('max_luggage_size')->unsigned();
             $table->float('flight_duration')->unsigned();
@@ -44,7 +45,7 @@ class CreateFlightsTable extends Migration
             // $table->foreign('airlines_id')
             //     ->references('id')
             //     ->on('airlines');
-
+            $table->boolean('is_international');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

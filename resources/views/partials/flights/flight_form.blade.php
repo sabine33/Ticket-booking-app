@@ -92,19 +92,27 @@
 
                        </div>
                        <div class="form-row">
-                           <div class="form-group col-md-4">
+                           <div class="form-group col-md-3">
                                <label for="flight_price_both_way_ratio">2Way Ratio</label>
                                <input type="text" class="form-control" id="flight_price_both_way_ratio" required>
                            </div>
-                           <div class="form-group col-md-4">
+                           <div class="form-group col-md-3">
                                <label for="max_luggage_size">Max Luggage Size</label>
                                <input type="number" class="form-control" id="max_luggage_size" required>
                            </div>
-                           <div class="form-group col-md-4">
+                           <div class="form-group col-md-3">
                                <div class="form-check">
                                    <input class="form-check-input" type="checkbox" id="status">
                                    <label class="form-check-label" for="status">
                                        Is Flight OK ?
+                                   </label>
+                               </div>
+                           </div>
+                           <div class="form-group col-md-3">
+                               <div class="form-check">
+                                   <input class="form-check-input" type="checkbox" id="is_international">
+                                   <label class="form-check-label" for="is_international">
+                                       Is International?
                                    </label>
                                </div>
                            </div>
@@ -123,7 +131,7 @@
 
    @push('scripts')
    <script>
-       let elements = ["#id", "#departure_date", "#departure_time", "#departure_type", "#ticket_type", "#max_ticket_count", "#from_location_id", "#to_location_id", "#airlines_id", "#status", "#flight_price_economy", "#flight_price_business", "#flight_price_both_way_ratio", "#flight_duration", "#max_luggage_size"];
+       let elements = ["#id", "#departure_date", "#departure_time", "#departure_type", "#ticket_type", "#max_ticket_count", "#from_location_id", "#to_location_id", "#airlines_id", "#status", "#flight_price_economy", "#flight_price_business", "#flight_price_both_way_ratio", "#flight_duration", "#max_luggage_size", "#is_international"];
        $('#editModal').on('shown.bs.modal', function(event) {
            var button = $(event.relatedTarget)
            var id = button.data('id')
@@ -180,6 +188,7 @@
                flight_price_both_way_ratio: $("#flight_price_both_way_ratio").val(),
                flight_duration: $("#flight_duration").val(),
                max_luggage_size: $("#max_luggage_size").val(),
+               is_international: $("#is_international").prop('checked')
            }
            alert(JSON.stringify(data));
            if (type == 'create') {
@@ -229,7 +238,7 @@
                $('#flight_price_both_way_ratio').val(flight.flight_price_both_way_ratio)
                $('#flight_duration').val(flight.flight_duration)
                $('#max_luggage_size').val(flight.max_luggage_size)
-
+               $('#is_international').prop('checked', flight.is_international);
            }).catch(err => {
                Swal.fire({
                    title: "Error on loading..",
