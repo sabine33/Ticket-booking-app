@@ -181,27 +181,27 @@
                         <label for="name">
                             Name/Surname
                         </label>
-                        <input type="text" id="name" value="{{$ticket->passenger_name}}" />
+                        <input type="text" id="name" value="{{$ticket->passenger_name}}" readonly />
                     </div>
 
                     <div class="name">
                         <label for="from">
                             From
                         </label>
-                        <input type="text" id="from" value="{{$ticket->flight->from_location->name}}" />
+                        <input type="text" id="from" value="{{$ticket->flight->from_location->name}}" readonly />
                     </div>
 
                     <div class="name">
                         <label for="name">
                             Destination
                         </label>
-                        <input type="text" id="name" value="{{$ticket->flight->to_location->name}}" />
+                        <input type="text" id="name" value="{{$ticket->flight->to_location->name}}" readonly />
                     </div>
                     <div class="name">
                         <label for="flight">
                             Flight
                         </label>
-                        <input type="text" id="flight" value="{{$ticket->flight_name}}" />
+                        <input type="text" id="flight" value="{{$ticket->flight_name}}" readonly />
                     </div>
 
                 </div>
@@ -211,25 +211,25 @@
                             <label for="date">
                                 Date
                             </label>
-                            <input type="text" id="date" value="{{date('M d Y', strtotime($ticket->flight->departure_date))}}" />
+                            <input type="text" id="date" value="{{date('M d Y', strtotime($ticket->flight->departure_date))}}" readonly />
                         </div>
                         <div class="row">
                             <label for="name">
                                 TIME
                             </label>
-                            <input type="text" id="ttime" value="{{date('h:i',strtotime($ticket->flight->departure_time))}}">
+                            <input type="text" id="ttime" value="{{date('h:i',strtotime($ticket->flight->departure_time))}}" readonly>
                         </div>
                         <div class="row">
                             <label for="name">
                                 GATE
                             </label>
-                            <input type="text" id="name" value="A1">
+                            <input type="text" id="name" value="A1" readonly>
                         </div>
                         <div class="row">
                             <label for="name">
                                 SEAT
                             </label>
-                            <input type="text" id="name" value="A202">
+                            <input type="text" id="name" value="A202" readonly>
                         </div>
 
                     </div>
@@ -252,46 +252,46 @@
                     <div class="row">
                         <label for="tname">NAME
                         </label>
-                        <input type="text" id="tname" value="{{$ticket->passenger_name}}" />
+                        <input type="text" id="tname" value="{{$ticket->passenger_name}}" readonly />
                     </div>
                     <div class="row">
                         <label for="tfrom">FROM
                         </label>
-                        <input type="text" id="tfrom" value="{{$ticket->flight->from_location->name}}" />
+                        <input type="text" id="tfrom" value="{{$ticket->flight->from_location->name}}" readonly />
                     </div>
                     <div class="row">
                         <label for="tto">TO
                         </label>
-                        <input type="text" id="tto" value="{{$ticket->flight->to_location->name}}" />
+                        <input type="text" id="tto" value="{{$ticket->flight->to_location->name}}" readonly />
                     </div>
                     <div class="row-halfs" style="display:flex;flex-wrap: nowrap;">
                         <div style="flex:0 0 55%;">
                             <label for="tdate">DATE
                             </label>
-                            <input type="text" id="tdate" style="width:75px;" value="{{date('M d', strtotime($ticket->flight->departure_date))}}" />
+                            <input type="text" id="tdate" style="width:75px;" value="{{date('M d', strtotime($ticket->flight->departure_date))}}" readonly />
                         </div>
                         <div style="flex:0 0 45%;">
                             <label for="ttime">TIME
                             </label>
-                            <input type="text" id="ttime" style="width:70px;" value="{{date('h:i',strtotime($ticket->flight->departure_time))}}">
+                            <input type="text" id="ttime" style="width:70px;" value="{{date('h:i',strtotime($ticket->flight->departure_time))}}" readonly>
                         </div>
                     </div>
                     <div class="row-halfs" style="display:flex;flex-wrap: nowrap;">
                         <div style="flex:0 0 55%;">
                             <label for="tdate">GATE
                             </label>
-                            <input type="text" id="tdate" style="width:75px;" value="A1" />
+                            <input type="text" id="tdate" style="width:75px;" value="A1" readonly />
                         </div>
                         <div style="flex:0 0 45%;">
                             <label for="ttime">SEAT
                             </label>
-                            <input type="text" id="ttime" style="width:70px" value="A102" />
+                            <input type="text" id="ttime" style="width:70px" value="A102" readonly />
                         </div>
                     </div>
                     <div class="item">
                         <label for="tflight">FLIGHT
                         </label>
-                        <input type="text" id="tflight" value="{{$ticket->flight_name}}" />
+                        <input type="text" id="tflight" value="{{$ticket->flight_name}}" readonly />
 
                     </div>
                 </div>

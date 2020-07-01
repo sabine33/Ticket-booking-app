@@ -29,7 +29,7 @@
         let model = button.data('model');
         var modal = $(this)
         modal.find('.modal-title').text("Are you sure want to delete ?")
-        modal.find('.modal-body').text(`Deleting will remove ${id} from database.`)
+        modal.find('.modal-body').text(`Deleting will remove ${model} with id ${id} from database.`)
         modal.find('.ok-button').attr("data-id", id);
         modal.find('.ok-button').attr("data-model", model);
 
@@ -46,8 +46,11 @@
             Swal.fire({
                 title: "Successfully deleted",
                 icon: "success"
+            }).then(() => {
+                $('#deleteModal').modal('hide');
+                location.reload();
+
             })
-            $('#deleteModal').modal('hide');
         }).catch(err => {
             Swal.fire({
                 title: "Error on deleting...",

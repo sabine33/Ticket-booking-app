@@ -29,22 +29,21 @@ class CreateTicketsTable extends Migration
             $table->string('passenger_address');
             $table->string('passenger_phone');
             $table->integer('total_cost')->unsigned();
-            $table->string('departure_type');
             $table->string('ticket_type');
-            $table->boolean('is_confirmed');
             $table->string('token');
-
-
-            // $table->foreign('user_id')
-            //     ->references('id')
-            //     ->on('users')->onDelete('set null');
-
-            // $table->foreign('flight_id')
-            //     ->references('id')
-            //     ->on('flights')
-            //     ->onDelete('set null');
-
+            $table->mediumText('remarks');
             $table->boolean('status')->default(true);
+
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')->onDelete('cascade');
+
+            $table->foreign('flight_id')
+                ->references('id')
+                ->on('flights')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

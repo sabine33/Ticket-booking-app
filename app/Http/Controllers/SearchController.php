@@ -20,11 +20,13 @@ class SearchController extends Controller
         return view('pages.flights', compact(['flights', 'locations', 'airlines']));
     }
 
-    public function bookTickets()
+    public function bookTickets(Request $request)
     {
+        $id = $request->flight_id;
         $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get();
         $airlines = Airlines::all();
         $locations = Location::all();
-        return view('pages.book_ticket', compact(['flights', 'airlines', 'locations']));
+        $layout = 'backend';
+        return view('front.booking_frontend', compact(['flights', 'airlines', 'locations', 'layout', 'id']));
     }
 }

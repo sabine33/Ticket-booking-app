@@ -19,23 +19,16 @@
                            </div>
                            <div class="form-group col-md-5">
                                <label for="departure_date">Departure Date</label>
-                               <input type="date" class="form-control" id="departure_date" placeholder="2021-12-12" required>
+                               <input type="date" class="form-control" id="departure_date" placeholder="2021-12-12" value="{{date('Y-m-d')}}" required>
                            </div>
 
                        </div>
                        <div class="form-row">
                            <div class="form-group col-md-4">
                                <label for="departure_time">Dep Time</label>
-                               <input type="time" class="form-control" id="departure_time" placeholder="" required>
+                               <input type="time" class="form-control" id="departure_time" placeholder="" required value="12:00">
                            </div>
-                           <div class="form-group col-md-4">
-                               <label for="departure_type">Dep Type</label>
-                               <select id="departure_type" class="form-control" required>
-                                   <option>Choose...</option>
-                                   <option value="one_way" selected> One Way</option>
-                                   <option value="two_way"> Two Way</option>
-                               </select>
-                           </div>
+
                            <div class="form-group col-md-4">
                                <label for="ticket_type">Ticket Class</label>
                                <select id="ticket_type" class="form-control" required>
@@ -92,23 +85,20 @@
 
                        </div>
                        <div class="form-row">
-                           <div class="form-group col-md-3">
-                               <label for="flight_price_both_way_ratio">2Way Ratio</label>
-                               <input type="text" class="form-control" id="flight_price_both_way_ratio" required>
-                           </div>
-                           <div class="form-group col-md-3">
-                               <label for="max_luggage_size">Max Luggage Size</label>
+
+                           <div class="form-group col-md-4">
+                               <label for="max_luggage_size">Lug. Size</label>
                                <input type="number" class="form-control" id="max_luggage_size" required>
                            </div>
-                           <div class="form-group col-md-3">
+                           <div class="form-group col-md-4">
                                <div class="form-check">
                                    <input class="form-check-input" type="checkbox" id="status">
                                    <label class="form-check-label" for="status">
-                                       Is Flight OK ?
+                                       Is OK ?
                                    </label>
                                </div>
                            </div>
-                           <div class="form-group col-md-3">
+                           <div class="form-group col-md-4">
                                <div class="form-check">
                                    <input class="form-check-input" type="checkbox" id="is_international">
                                    <label class="form-check-label" for="is_international">
@@ -120,7 +110,7 @@
                    </form>
                </div>
                <div class="modal-footer">
-                   <button type="button" class="btn btn-primary ok-button" data-dismiss="modal" onclick='saveElement(this)'>OK</button>
+                   <button type="button" class="btn btn-primary ok-button" data-dismiss="modal" onclick='saveData(this)'>OK</button>
                    <button type="button" class="btn btn-secondary cancel-button" data-dismiss="modal">Cancel</button>
 
                </div>
@@ -131,49 +121,13 @@
 
    @push('scripts')
    <script>
-       let elements = ["#id", "#departure_date", "#departure_time", "#departure_type", "#ticket_type", "#max_ticket_count", "#from_location_id", "#to_location_id", "#airlines_id", "#status", "#flight_price_economy", "#flight_price_business", "#flight_price_both_way_ratio", "#flight_duration", "#max_luggage_size", "#is_international"];
-       $('#editModal').on('shown.bs.modal', function(event) {
-           var button = $(event.relatedTarget)
-           var id = button.data('id')
-           var type = button.data('type')
-
-           elements.forEach(elem => {
-               $(elem).attr('disabled', type == 'view')
-           })
-
-           switch (type) {
-               case "view":
-                   fillElement(id);
-                   break;
-               case "create":
-                   break;
-               case "edit":
-                   fillElement(id)
-                   break;
-           }
+       let elements = ["#departure_date", "#departure_time", "#departure_type", "#ticket_type", "#max_ticket_count", "#from_location_id", "#to_location_id", "#airlines_id", "#status", "#flight_price_economy", "#flight_price_business", "#flight_duration", "#max_luggage_size", "#is_international"];
 
 
-           var modal = $(this);
 
-           modal.find('.ok-button').attr("data-id", id);
-           modal.find('.ok-button').attr('data-type', type);
+       loadModal(elements);
 
-       })
-
-       function saveElement(event) {
-
-           if (!document.getElementById("form").checkValidity()) {
-               Swal.fire({
-                   icon: 'error',
-                   title: 'Oops...',
-                   text: 'Please fill form carefully!',
-               })
-               return false;
-           }
-
-           let type = event.dataset.type;
-           let id = event.dataset.id;
-
+       function saveData(event) {
            let data = {
                departure_date: $("#departure_date").val(),
                departure_time: $("#departure_time").val(),
@@ -182,43 +136,18 @@
                from_location_id: $("#from_location_id").val(),
                to_location_id: $("#to_location_id").val(),
                airlines_id: $("#airlines_id").val(),
-               status: $("#status").val(),
+               status: $("#status").prop('checked'),
                flight_price_economy: $("#flight_price_economy").val(),
                flight_price_business: $("#flight_price_business").val(),
-               flight_price_both_way_ratio: $("#flight_price_both_way_ratio").val(),
                flight_duration: $("#flight_duration").val(),
                max_luggage_size: $("#max_luggage_size").val(),
                is_international: $("#is_international").prop('checked')
            }
-           alert(JSON.stringify(data));
-           if (type == 'create') {
-               axios.post(API_URL + 'flights/', data).then((response) => {
-                   Swal.fire({
-                       title: "Successfully saved",
-                       icon: "success"
-                   });
-               }).catch(err => {
-                   Swal.fire({
-                       title: "Error on saving..",
-                       icon: "error"
-                   });
-               });
-           } else if (type == 'edit') {
-               axios.put(API_URL + 'flights/' + id, data).then((response) => {
-                   Swal.fire({
-                       title: "Successfully saved",
-                       icon: "success"
-                   });
-               }).catch(err => {
-                   Swal.fire({
-                       title: "Error on saving..",
-                       icon: "error"
-                   });
-               });
-           } else {
-
-           }
+           console.log(JSON.stringify(data))
+           saveElement(event, data, "flights");
        }
+
+
 
        function fillElement(id) {
 
@@ -226,19 +155,18 @@
                let flight = response.data;
                $('#id').val(flight.id)
                $('#departure_date').val(flight.departure_date)
-               $('#departure_time').val(flight.departure_time)
-               $('#departure_type').val(flight.departure_type).trigger('change')
+               $('#departure_time').val(flight.departure_time.slice(0, flight.departure_time.lastIndexOf(":")))
                $('#from_location_id').val(flight.from_location_id).trigger('change')
                $('#to_location_id').val(flight.to_location_id).trigger('change')
+               $('#max_ticket_count').val(flight.max_ticket_count)
                $('#airlines_id').val(flight.airlines_id).trigger('change')
-               $('#status').prop('checked', flight.status)
                $('#flight_price_economy').val(flight.flight_price_economy)
-
                $('#flight_price_business').val(flight.flight_price_business)
-               $('#flight_price_both_way_ratio').val(flight.flight_price_both_way_ratio)
                $('#flight_duration').val(flight.flight_duration)
                $('#max_luggage_size').val(flight.max_luggage_size)
                $('#is_international').prop('checked', flight.is_international);
+               $('#status').prop('checked', flight.status)
+
            }).catch(err => {
                Swal.fire({
                    title: "Error on loading..",

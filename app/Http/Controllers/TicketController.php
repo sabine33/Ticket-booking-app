@@ -7,6 +7,7 @@ use App\Models\Flight;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\User;
+use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
@@ -75,6 +76,22 @@ class TicketController extends Controller
         $ticket = Ticket::find(1);
         return view('front.home', compact(['ticket']));
     }
+    public function send_email($ticket, $email)
+    {
+        if (isset($ticket)) {
+            Mail::to($email)->send(new TicketMail($ticket));
+        } else {
+        }
+    }
+    public function send_cancelled_email($ticket, $email)
+    {
+        if (isset($ticket)) {
+            Mail::raw('Ticket cancellation request sent successfully.', function ($message) use ($email) {
+                $message->subject('Ticket Cancellation')->to($email);
+            });
+        } else {
+        }
+    }
     public function send_mail(Request $request)
     {
         $ticket = Ticket::find(1);
@@ -90,15 +107,42 @@ class TicketController extends Controller
         $token = Str::random(10);
         $array = $request->all();
         $array["token"] = $token;
-        // $fullname = $request->passenger_name;
         $ticket = Ticket::create($array);
+        $this->send_email($ticket, $email);
         // $this->send_sms($phone, $ticket->id);
 
-        if (isset($ticket)) {
-            Mail::to($email)->send(new TicketMail($ticket));
-        } else {
-        }
         return $ticket;
+        // return array('message' => 'Ticket successfully saved.', 'data' => $ticket);
+    }
+    public function cancelTicket(Request $request)
+    {
+        return view('front.cancel_ticket');
+    }
+    public function cancelTicketPost(Request $request)
+    {
+        $id = $request->id;
+        $token = $request->token;
+        $remarks = addslashes($request->remarks);
+
+        $message = array();
+        try {
+            $ticket = Ticket::all()->where('id', '=', $id)->where('token', '=', $token)->first();
+            $email = $ticket->passenger_email;
+            if (isset($ticket)) {
+                $ticket->status = false;
+                $ticket->remarks = $remarks;
+                $ticket = $ticket->save();
+                $this->send_cancelled_email($ticket, $email);
+                $message = array('message' => 'TICKET CANCELLED SUCCESSFULLY');
+            } else {
+                throw new Exception("Ticket Not found");
+            }
+        } catch (\Exception $e) {
+            // do task when error
+            $message = array('message' => $e->getMessage());   // insert query
+        }
+
+        return view('front.cancel_ticket', compact('message'));
     }
 
     public function update(Request $request, $id)

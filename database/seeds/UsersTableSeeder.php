@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
         // Let's clear the users table first
         User::truncate();
 
-        $faker = Factory::create();
+        $faker = Factory::create('ne_NP');
 
         // Let's make sure everyone has the same password and 
         $password = Hash::make('admin');
@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
         // And now let's generate a few dozen users for our app:
         for ($i = 0; $i < 10; $i++) {
             User::create([
-                'name' => $faker->name,
+                'name' => $faker->name(),
                 'email' => $faker->email,
                 'password' => $password,
             ]);

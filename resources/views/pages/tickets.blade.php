@@ -13,7 +13,7 @@
     <p class="mb-4"> Please use this section to manage different tickets.</p>
     <div class="card shadow mb-4">
         <div class="card-body">
-            <a href="/admin/book-ticket" class="btn btn-info btn-sm rounded-0 float-right my-1"><i class="fa fa-plus"></i>Add</a>
+            <a href="/admin/book-ticket/1" class="btn btn-info btn-sm rounded-0 float-right my-1"><i class="fa fa-plus"></i>Add</a>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>

@@ -15,11 +15,11 @@ class LocationsTableSeeder extends Seeder
     {
         Location::truncate();
 
-        $faker = Factory::create();
+        $faker = Factory::create('ne_NP');
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             Location::create([
-                'name' => $faker->unique()->country
+                'name' => $faker->unique()->randomElement(['Kathmandu', 'Pokhara', 'Dharan', 'Biratnagar', 'Bhairahawa', 'Butwal', 'Nepalgunj', 'Jhapa', 'Bharatpur', 'Mahendranagar'])
             ]);
         }
     }

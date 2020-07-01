@@ -57,7 +57,7 @@
 
                             </ul>
                         </li>
-                        <li class="{{ Request::path() === 'news' ? 'current_page_item' : '' }}"><a href="/news" accesskey="4" title="">News</a></li>
+
                         <li class="{{ Request::path() === 'contact' ? 'current_page_item' : '' }}"><a href="/contact" accesskey="5" title="">Contact Us</a></li>
 
                         <div class="nav-right">

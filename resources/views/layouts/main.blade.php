@@ -39,6 +39,8 @@
 
 
             {{-- JS --}}
+            <script src="/js/crud.js"></script>
+
             @include('partials.scripts')
 
 

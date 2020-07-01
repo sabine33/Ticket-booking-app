@@ -28,7 +28,7 @@
 
                </div>
                <div class="modal-footer">
-                   <button type="button" class="btn btn-primary ok-button" data-dismiss="modal" onclick='saveElement(this)'>OK</button>
+                   <button type="button" class="btn btn-primary ok-button" data-dismiss="modal" onclick='saveData(this)'>OK</button>
                    <button type="button" class="btn btn-secondary cancel-button" data-dismiss="modal">Cancel</button>
 
                </div>
@@ -41,87 +41,16 @@
    <script>
        let elements = ["#id", "#name", "#email", "#password"];
 
-       $('#editModal').on('shown.bs.modal', function(event) {
-           var button = $(event.relatedTarget)
-           var id = button.data('id')
-           var type = button.data('type')
-           elements.forEach(elem => {
-               $(elem).attr('disabled', type == 'view')
-           })
+       loadModal(elements);
 
-           switch (type) {
-               case "view":
-                   fillElement(id);
-                   break;
-               case "create":
-                   break;
-               case "edit":
-                   fillElement(id)
-                   break;
-           }
-           var modal = $(this);
-           modal.find('.ok-button').attr("data-id", id);
-           modal.find('.ok-button').attr('data-type', type);
-
-       })
-
-       function saveElement(event) {
-
-           if (!document.getElementById("form").checkValidity()) {
-               Swal.fire({
-                   icon: 'error',
-                   title: 'Oops...',
-                   text: 'Please fill form carefully!',
-               })
-               return false;
-           }
-
-           let type = event.dataset.type;
-           let id = event.dataset.id;
-
+       function saveData(event) {
            let data = {
                name: $("#name").val(),
                email: $("#email").val(),
-               password: $("#password").val()
-           }
-           if (type == 'create') {
-               elements.forEach(elem => {
-                   $(elem).val('');
-               })
-               axios.post(API_URL + 'users/', data).then((response) => {
-                   //    alert(JSON.stringify(response.data))
+               password: $("#password").val(),
 
-                   Swal.fire({
-                       title: 'Success...',
-                       text: 'User is created successfully. Please reload this page .!',
-                       icon: "success"
-                   })
-               }).catch(err => {
-                   Swal.fire({
-                       icon: 'error',
-                       title: 'Oops...',
-                       text: 'Unable to create user!',
-                   })
-                   console.log(err)
-               });
-           } else if (type == 'edit') {
-               axios.put(API_URL + 'users/' + id, data).then((response) => {
-                   Swal.fire({
-                       title: 'Success...',
-                       text: 'User is created successfully. Please reload this page .!',
-                       icon: "success"
-                   })
-               }).catch(err => {
-                   Swal.fire({
-                       icon: 'error',
-                       title: 'Oops...',
-                       text: 'Unable to create user!',
-                   })
-                   console.log(err)
-               });
-           } else {
-
-           }
+           };
+           saveElement(event, data, "users");
        }
 
        function fillElement(id) {

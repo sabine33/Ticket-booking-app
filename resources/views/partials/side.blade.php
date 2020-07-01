@@ -76,7 +76,7 @@
 
 
     <li class="nav-item">
-        <a class="nav-link" href="/admin/book-ticket">
+        <a class="nav-link" href="/admin/book-ticket/1">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Book Ticket</span></a>
     </li>

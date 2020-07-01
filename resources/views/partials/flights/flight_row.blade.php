@@ -9,7 +9,6 @@
     <td>{{$flight->available_tickets}}</td>
 
     <td>{{$flight->flight_price_economy}}-{{$flight->flight_price_business}}</td>
-    <td>{{$flight->is_international?'YES':'NO'}}</td>
 
     <td>
         @include('partials.editor',['id' => $flight->id,'model'=>'flights'])

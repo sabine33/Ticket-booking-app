@@ -1,12 +1,22 @@
 <?php
 
 use Illuminate\Support\Str;
-
-$url = parse_url(env("CLEARDB_DATABASE_URL", "mysql://bddcac1e21b09c:f8fefd47@us-cdbr-east-02.cleardb.com/heroku_628da9122cb72c9?reconnect=true"));
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+// DB_CONNECTION=mysql
+// DB_HOST=us-cdbr-east-02.cleardb.com
+// DB_PORT=3306
+// DB_DATABASE=heroku_628da9122cb72c9
+// DB_USERNAME=bddcac1e21b09c
+// DB_PASSWORD=f8fefd47
+// $url = parse_url(env("CLEARDB_DATABASE_URL", "mysql://bddcac1e21b09c:f8fefd47@us-cdbr-east-02.cleardb.com/heroku_628da9122cb72c9?reconnect=true"));
+// $host = $url["host"];
+// $username = $url["user"];
+// $password = $url["pass"];
+// $database = substr($url["path"], 1);
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'flightapp';
+$port = 3308;
 return [
 
     /*
@@ -47,6 +57,7 @@ return [
             'username' => $username,
             'password' => $password,
             'charset' => 'utf8',
+            'port' => $port,
             'collation' => 'utf8_unicode_ci',
             'strict' => true,
             'engine' => null,

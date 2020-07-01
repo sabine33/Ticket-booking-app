@@ -36,16 +36,16 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="id">Ticket ID</label>
-                                    <input type="number" class="form-control" id="id" name="id" value="61">
+                                    <input type="number" class="form-control" id="id" name="id" value="57">
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label for="token">Security Token</label>
-                                    <input type="text" class="form-control" id="token" name="token" value="YrnchcEoBs">
+                                    <input type="text" class="form-control" id="token" name="token" value="cZwK7nJiH8">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="reason">Reason for cancellation</label>
-                                    <input type="text" class="form-control" id="reason">
+                                    <label for="remarks">Reason for cancellation</label>
+                                    <input type="text" class="form-control" id="remarks">
                                 </div>
 
                             </div>

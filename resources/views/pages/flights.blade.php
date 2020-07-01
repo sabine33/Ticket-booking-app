@@ -29,7 +29,6 @@
                             <th>Flight Duration</th>
                             <th>Ticket Count</th>
                             <th>Price</th>
-                            <th>Intl?.</th>
                             <th>Manage</th>
                         </tr>
                     </thead>

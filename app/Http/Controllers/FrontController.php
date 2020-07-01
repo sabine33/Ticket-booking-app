@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class FrontController extends Controller
 {
-    //
+
+
     public function homepage(Request $request)
     {
         return view('front.welcome');
@@ -29,45 +30,22 @@ class FrontController extends Controller
     {
         return view('front.news');
     }
+    public function ticket(Request $request)
+    {
+        $pdf = PDF::loadView('pdf.invoice', $data);
+        return $pdf->download('invoice.pdf');
+    }
     public function contact_us(Request $request)
     {
         return view('front.contact');
     }
-    public function cancelTicket(Request $request)
-    {
-        return view('front.cancel_ticket');
-    }
-    public function cancelTicketPost(Request $request)
-    {
-        $id = $request->id;
-        $token = $request->token;
 
-        $message = array();
-        try {
-            $ticket = Ticket::findOrFail($id);
-            $ticket->status = false;
-            $ticket = $ticket->save();
-            // $ticket = Ticket::findOrFail($id);
-            $message = array('message' => 'TICKET CANCELLED SUCCESSFULLY');
-        } catch (\Exception $e) {
-            // do task when error
-            $message = array('message' => $e->getMessage());   // insert query
-        }
-        // $result = DB::table('tickets')
-        //     ->where('id', $id)
-        //     ->where('token', $token)
-        //     ->update(['status' => false]);
-        // return $result;
-
-
-        return view('front.cancel_ticket', compact('message'));
-    }
     public function search(Request $request)
     {
         $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get();
         $airlines = Airlines::all();
         $locations = Location::all();
-        return view('front.search', compact(['flights', 'airlines', 'locations']));
+        return view('front.search_frontend', compact(['flights', 'airlines', 'locations']));
     }
     public function getAvailableTickets(Request $request)
     {
@@ -97,20 +75,20 @@ class FrontController extends Controller
 
 
         $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get()->whereBetween('departure_date', [$from_date, $to_date])->where('available_tickets', '>=', $ticket_count)->where('from_location_id', '=', $from_location_id)->where('to_location_id', '=', $to_location_id);
-        // $flights = DB::table('flights')
-        //     ->where('departure_date', '>=', "$from_date")
-        //     ->get();
-
         $airlines = Airlines::all();
         $locations = Location::all();
-        return view('front.search', compact(['flights', 'airlines', 'locations']));
+        return view('front.search_frontend', compact(['flights', 'airlines', 'locations']));
     }
+
+
+    //booking ticket UI
     public function booking(Request $request)
     {
-        $id = $request->id;
+        $id = $request->flight_id;
         $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get();
         $airlines = Airlines::all();
         $locations = Location::all();
-        return view('front.book', compact(['flights', 'airlines', 'locations']));
+        $layout = 'frontend';
+        return view('front.booking_frontend', compact(['flights', 'airlines', 'locations', 'layout', 'id']));
     }
 }
