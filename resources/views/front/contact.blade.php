@@ -175,7 +175,11 @@
         }
         axios.post('/contact', data).then((response) => {
             Swal.fire({
-                title: response.data
+                title: response.data.response
+            }).then(() => {
+                $("#name").val('')
+                $("#email").val('')
+                $("#message").val('')
             })
         }).catch(err => {
             Swal.fire({

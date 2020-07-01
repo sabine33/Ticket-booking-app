@@ -284,7 +284,6 @@
                         <li><a href="/">Home</a></li>
                         <li class="active"><a href="/about">About</a></li>
                         <li><a href="">Flights</a></li>
-                        <li><a href="#">News</a></li>
                         <li><a href="/contact">Contact Us</a></li>
                     </ul>
                 </div>

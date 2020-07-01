@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="passenger_email">Email</label>
-                                    <input type="email" class="form-control" id="passenger_email" required value="sabin.khanal.33@gmail.com">
+                                    <input type="email" class="form-control" id="passenger_email" required value="karki.anamika@gmail.com">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="remarks">Remarks</label>

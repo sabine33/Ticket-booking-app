@@ -5,16 +5,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::get('/', function () {
     return  ['message' => 'API Successfully Loaded'];
@@ -30,7 +20,6 @@ Route::get('get_flight/{id}', function ($id) {
     $flight = Flight::findOrFail($id);
     return $flight;
 });
-
 
 
 
@@ -65,7 +54,6 @@ Route::put('tickets/{id}', 'TicketController@update');
 Route::get('tickets/{id}', 'TicketController@show');
 Route::delete('tickets/{id}', 'TicketController@destroy');
 Route::get('tickets', 'TicketController@getAll');
-
 
 
 

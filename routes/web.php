@@ -8,18 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 
 
 Route::get('/', 'FrontController@homepage');
@@ -33,8 +21,6 @@ Route::get('search', 'FrontController@search');
 Route::post('search', 'FrontController@searchFlights');
 Route::get('available_tickets', 'FrontController@getAvailableTickets');
 
-
-
 Route::get('cancel_flight', 'TicketController@cancelTicket');
 Route::post('cancel_flight', 'TicketController@cancelTicketPost');
 
@@ -43,8 +29,8 @@ Route::post('contact', function (Request $request) {
     $name = $request->name;
     $email = $request->email;
     $message = $request->message;
-    $response = 'Thanks for contacting us';
-    return view('front.contact', compact('response'));
+    $response = array("response" => 'Thanks for contacting us');
+    return $response;
 });
 
 
