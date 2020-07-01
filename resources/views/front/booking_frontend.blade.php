@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="passenger_name">Passenger Name(Owner)</label>
-                                    <input type="text" class="form-control" id="passenger_name" required value="sabin khanal">
+                                    <input type="text" class="form-control" id="passenger_name" required value="Anamika Karki">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="passenger_address">Address</label>
@@ -125,7 +125,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="passenger_phone">Contact No</label>
-                                    <input type="text" class="form-control" id="passenger_phone" required value="9863180880">
+                                    <input type="text" class="form-control" id="passenger_phone" required value="9841222222">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="passenger_email">Email</label>

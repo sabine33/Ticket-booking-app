@@ -482,7 +482,7 @@ INSERT INTO `tickets` (`id`, `user_id`, `flight_id`, `adults_count`, `kids_count
 (58, 1, 2, 1, 0, 'Pawan shrestha', 'pawanpradhan325@gmail.com', 'Kathmandu', '9863180880', 19569, 'one_way', 'business', 1, 1, '2020-06-30 00:57:01', '2020-06-30 00:57:01', ''),
 (61, 1, 2, 1, 0, 'Pawan shrestha', 'pawanpradhan325@gmail.com', 'Kathmandu', '9818926102', 19569, 'one_way', 'economy', 1, 0, '2020-06-30 01:11:28', '2020-06-30 01:44:19', 'YrnchcEoBs'),
 (62, 1, 2, 1, 0, 'Pawan pradhan', 'pawanpradhan325@gmail.com', 'Nayabazar', '9818926102', 5174, 'one_way', 'economy', 1, 1, '2020-06-30 01:12:55', '2020-06-30 01:12:55', 'luqGdPIUWk'),
-(63, 1, 2, 1, 0, 'Sabin Khanal', 'ak00413@gmail.com', 'nayabazar', '9863180880', 5174, 'one_way', 'economy', 1, 1, '2020-06-30 01:13:40', '2020-06-30 01:13:40', 'EFtwDHR7bM');
+(63, 1, 2, 1, 0, 'Anamika Karki', 'ak00413@gmail.com', 'nayabazar', '9863180880', 5174, 'one_way', 'economy', 1, 1, '2020-06-30 01:13:40', '2020-06-30 01:13:40', 'EFtwDHR7bM');
 
 -- --------------------------------------------------------
 
@@ -522,7 +522,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (9, 'Elmore Bradtke', 'williamson.priscilla@crist.org', NULL, '$2y$10$a2D9DnUKWidTlA7Vw7ZlHOixpd4bvcVdTuha6jAngr/6ANuksZ5B2', NULL, '2020-06-27 22:15:44', '2020-06-27 22:15:44', NULL),
 (10, 'Darryl Olson', 'finn.schiller@yahoo.com', NULL, '$2y$10$a2D9DnUKWidTlA7Vw7ZlHOixpd4bvcVdTuha6jAngr/6ANuksZ5B2', NULL, '2020-06-27 22:15:44', '2020-06-27 22:15:44', NULL),
 (11, 'Joelle Barrows', 'cyril88@wilkinson.com', NULL, '$2y$10$a2D9DnUKWidTlA7Vw7ZlHOixpd4bvcVdTuha6jAngr/6ANuksZ5B2', NULL, '2020-06-27 22:15:44', '2020-06-27 22:15:44', NULL),
-(12, 'sabin khanal', 'apple@ball.com', NULL, '$2y$10$VoLfk6P2oUZ30xNtRZUSLOy4N6Yb/6tjNwTdeVOhACLUO7YCLuRju', NULL, '2020-06-28 01:45:28', '2020-06-28 01:45:28', NULL),
+(12, 'Anamika Karki', 'apple@ball.com', NULL, '$2y$10$VoLfk6P2oUZ30xNtRZUSLOy4N6Yb/6tjNwTdeVOhACLUO7YCLuRju', NULL, '2020-06-28 01:45:28', '2020-06-28 01:45:28', NULL),
 (13, 'SABIN', 'admin@gmail.com', NULL, '$2y$10$Rp.36k7yAQ9xE7fFy69LouRmb1I3p5QPfdeCUsn.RWBT/9MFb89cq', NULL, '2020-06-28 01:46:31', '2020-06-28 01:46:31', NULL);
 COMMIT;
 
