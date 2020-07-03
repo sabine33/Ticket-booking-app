@@ -51,11 +51,14 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="flight_id">Flight Name {{$id}}</label>
+                                    <label for="flight_id">Flight Name</label>
                                     <select id="flight_id" class="form-control" required>
                                         @if(isset($id)){
                                         @foreach($flights as $flight){
-                                        <option value="{{$flight->id}}">{{$flight->flight_name}}</option>
+
+                                        <option value="{{$flight->id}}" @if($flight->id == $id)
+                                            {{'selected="selected"'}}
+                                            @endif>{{$flight->flight_name}}</option>
                                         }
                                         }
                                         @endforeach
