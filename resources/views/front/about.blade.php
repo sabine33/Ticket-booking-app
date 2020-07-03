@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-xl-10 intro-text">
+        <div class="col-xl-12 intro-text">
 
             <div class="section-title">
                 <h2>About Us</h2>
@@ -210,7 +210,7 @@
     <!-- Award Section End -->
 
     <!-- Call To Action Begin -->
-    <section class="callto-section">
+    <section class="callto-section my-2">
         <div class="container">
             <div class="callto-text">
                 <h2>Book your flight with us now!</h2>
@@ -218,4 +218,5 @@
             <a href="/flights/create" class="primary-btn">To Book</a>
         </div>
     </section>
-    @endsection
+</div>
+@endsection

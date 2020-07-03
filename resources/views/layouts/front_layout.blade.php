@@ -45,7 +45,7 @@
 
     @include('front.header')
 
-    <div class="container-fluid px-2">
+    <div class="container-fluid" style="padding-left:0px;padding-right:0px;">
         @yield('content')
     </div>
 

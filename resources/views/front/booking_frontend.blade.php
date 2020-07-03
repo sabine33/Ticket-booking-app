@@ -17,7 +17,7 @@
 
 @section('content')
 <div style="background-image:url('/img/blur.jpg');background-size:cover;" class="row">
-    <div class="col mx-1 my-1">
+    <div class="col-lg-12 mx-1 my-1">
 
 
         <h1 class=" h4 mb-2 text-white">Book Tickets </h1>

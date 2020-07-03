@@ -1,8 +1,14 @@
 <header class="header-section" style="">
+    <style>
+        .nav-link {
+            font-size: 1.2em;
+            margin: 0px 20px
+        }
+    </style>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="z-index:10000;">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="/img/logo.jpg" alt="" style="width:220px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
