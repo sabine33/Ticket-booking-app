@@ -99,8 +99,8 @@ class TicketController extends Controller
     public function send_mail(Request $request)
     {
         $ticket = Ticket::find(1);
-        $mode = array(["email" => false]);
-        Mail::to("karki.sunamika@gmail.com")->send(new TicketMail($ticket));
+        $mode = array(["email" => true]);
+        Mail::to("sabin.khanal.33@gmail.com")->send(new TicketMail($ticket));
         return
             view('partials.mail.ticket_info', compact(['ticket', 'mode']));
     }

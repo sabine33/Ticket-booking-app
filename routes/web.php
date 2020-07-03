@@ -51,6 +51,7 @@ Route::get('available_tickets', 'TicketController@getAvailableTickets');
 Route::get('cancel_flight', 'TicketController@cancelTicket');
 Route::post('cancel_flight', 'TicketController@cancelTicketPost');
 
+Route::get('send_mail', 'TicketController@send_mail');
 
 Route::post('contact', function (Request $request) {
     $name = $request->name;
@@ -69,7 +70,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('tickets', 'TicketController')->middleware('auth');
     Route::get('search', 'FlightController@search')->middleware('auth');
     Route::get('book-ticket/{flight_id}', 'TicketController@bookTickets');
-    Route::get('send_mail', 'TicketController@send_mail')->middleware('auth');
     Route::get('send_sms', 'TicketController@send_sms')->middleware('auth');
     Route::get('ticket', 'TicketController@getTicket')->middleware('auth');
     Route::get('/', 'DashboardController@index')->middleware('auth')->name('dashboard');

@@ -1,0 +1,146 @@
+<style>
+    #print_button input {
+        padding: 10px;
+        border: 1px solid #fff;
+        background-color: #32B9BC;
+        color: #fff;
+        font-size: 1em;
+    }
+
+    #print_button {
+        text-align: center;
+    }
+
+    .main {
+        width: 95vw;
+        height: 400px;
+        margin: 0px auto;
+        background-color: #F1EDE0;
+        display: flex;
+        border-radius: 10px;
+        max-width: 800px;
+        min-width: 800px;
+    }
+
+    .block1 {
+        width: 70%;
+        height: inherit;
+        border: 2px solid #fff;
+        border-right: 2px dotted #fff;
+        border-radius: 10px;
+
+    }
+
+    .block2 {
+        width: 30%;
+        border-radius: 10px;
+        height: inherit;
+        border: 2px solid #fff;
+        border-left: 1px dotted #000;
+        margin: 0px auto;
+    }
+
+    .header {
+        padding: 5px 5px;
+        background-color: #32B9BC;
+
+        color: white;
+        letter-spacing: 0.2;
+    }
+
+    .header .title {
+        text-transform: uppercase;
+        font-size: 1.5em;
+    }
+
+    .header .subtitle {
+        font-size: 1em;
+    }
+
+    .block2 .header {
+        padding: 15px 15px;
+        color: #fff;
+    }
+
+    .info1 input[type="text"],
+    .info2 input[type="text"] {
+        display: block;
+        border: none;
+        padding: 5px 2px;
+        font-size: 1em;
+        text-transform: uppercase;
+        margin: 5px 0px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background: #fafafa;
+
+    }
+
+    .footer {
+        background-color: #32B9BC;
+        padding: 20px 0px;
+        text-align: right;
+        font-weight: normal;
+        color: #fafafa;
+
+    }
+
+    .block1 .footer {
+        margin: 60px 0px;
+    }
+
+    .block2 .footer {
+        margin: 5px 0px;
+        padding: 11px 10px;
+
+    }
+
+    .body {
+        display: flex;
+        padding: 5px;
+    }
+
+    .barcode {
+        margin: auto 10px;
+    }
+
+    .block2 .body {
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        align-items: center;
+    }
+
+    .info1,
+    .info2 {
+        color: #888;
+        font-weight: 200;
+        margin: 0px 10px;
+        padding-top: 20px;
+    }
+
+    .info3 {
+        color: #888;
+        font-weight: 200;
+        margin: 0px 5px;
+        padding-top: 0px;
+
+    }
+
+    .info3 input[type="text"] {
+        display: block;
+        border: none;
+        padding: 4px 2px;
+        font-size: 1em;
+        text-transform: uppercase;
+        margin: 2px 0px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background: #fafafa;
+    }
+
+    .info3 .row {
+        width: 100%;
+    }
+
+    .info3 .row-half {
+        width: 50%;
+    }
