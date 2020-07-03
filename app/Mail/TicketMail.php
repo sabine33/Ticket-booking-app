@@ -32,7 +32,7 @@ class TicketMail extends Mailable
         // $path = Storage::get('app/pdf/' . 'tickets.pdf');
 
         return $this->view('partials.mail.ticket_info')
-            ->from('programmersabin33@gmail.com', 'Hawaijahaj')
+            ->from('karki.sunamika@gmail.com', 'Hawaijahaj')
             ->subject('Ticket Confirmation')
             ->with([
                 '$ticket' => $this->ticket,
