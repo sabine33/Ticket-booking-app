@@ -23,19 +23,20 @@
 
                 <div class="row">
                     <div class="col-lg-8">
-                        <form id="form" class="contact-form">
+                        <form id="form" class="contact-form" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Your name" name="name" required>
+                                    <input type="text" placeholder="Your name" name="name" required id="name">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="email" placeholder="Your email" name="email" required>
+                                    <input type="email" placeholder="Your email" name="email" required id="email">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea name="message" placeholder="Message" rows="10" cols="10" style="min-height:100px;"></textarea>
-                                    <button type="button" onclick="onSubmit()">Send Message</button>
+                                    <textarea name="message" placeholder="Message" rows="10" cols="10" style="min-height:100px;" id="message"></textarea>
+                                
                                 </div>
+                                <button type="button" onclick="onSubmit()">Send Message</button>
                             </div>
                         </form>
                     </div>
@@ -92,7 +93,12 @@
             email: $("#email").val(),
             message: $("#message").val()
         }
+        console.log(data)
         axios.post('/contact', data).then((response) => {
+           console.log(response)
+           $("#name").val('')
+                $("#email").val('')
+                $("#message").val('')
             Swal.fire({
                 title: response.data.response
             }).then(() => {
@@ -102,7 +108,8 @@
             })
         }).catch(err => {
             Swal.fire({
-                title: "Error sending"
+                title: "Error sending",
+                text:err.message
             })
         })
     }
