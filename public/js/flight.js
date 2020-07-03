@@ -101,7 +101,11 @@ function onBookTicket() {
                         icon: "success",
                     }).then(() => {
                         setTimeout(() => {
-                            document.location.href = "/";
+                            if (document.location.href.search("/admin/") < 0) {
+                                document.location.href = "/";
+                            } else {
+                                location.reload();
+                            }
                         }, 2000);
                     });
                 })

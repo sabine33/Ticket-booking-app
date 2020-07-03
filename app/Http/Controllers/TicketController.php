@@ -110,10 +110,14 @@ class TicketController extends Controller
         $array = $request->all();
         $array["token"] = $token;
         $ticket = Ticket::create($array);
-        $this->send_email($ticket, $email);
-        // $this->send_sms($phone, $ticket->id);
+        try {
+            $this->send_email($ticket, $email);
+            return $ticket;
+            // $this->send_sms($phone, $ticket->id);
+        } catch (Exception $ex) {
+            return array('status' => false, 'message' => $ex->getMessage());
+        }
 
-        return $ticket;
         // return array('message' => 'Ticket successfully saved.', 'data' => $ticket);
     }
     public function cancelTicket(Request $request)
