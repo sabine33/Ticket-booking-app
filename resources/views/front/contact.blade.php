@@ -99,7 +99,9 @@
                 $("#name").val('')
                 $("#email").val('')
                 $("#message").val('')
+                return;
             })
+
         }).catch(err => {
             Swal.fire({
                 title: "Error sending"
