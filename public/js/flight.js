@@ -19,6 +19,19 @@ $(document).ready(() => {
     $("#flight_id").on("click", function (e) {
         fetchFlightDetails(e.target.value);
     });
+
+    $("#ticket_type").on("change", function (e) {
+        calculateCostForDisplay();
+    });
+    $("#kids_count").on("change", function (e) {
+        calculateCostForDisplay();
+    });
+    $("#adults_count").on("change", function (e) {
+        calculateCostForDisplay();
+    });
+    $("#ticket_id").on("change", function (e) {
+        calculateCostForDisplay();
+    });
 });
 
 function validateForm() {
@@ -43,7 +56,7 @@ function getData() {
         passenger_email: $("#passenger_email").val(),
         passenger_address: $("#passenger_address").val(),
         passenger_phone: $("#passenger_phone").val(),
-        total_cost: calculateTotal(),
+        total_cost: calculateTotal() || 0,
         ticket_type: $("#ticket_type").val(),
         status: true,
         remarks: $("#remarks").val() ? $("#remarks").val().addSlashes() : "-",
@@ -95,6 +108,15 @@ function onBookTicket() {
             axios
                 .post(POST_URL, data)
                 .then((response) => {
+                    if (!response.data.status) {
+                        Swal.fire({
+                            customClass: "swal-size-sm",
+                            title: "Error occured while saving ticket",
+                            icon: "warning",
+                            text: response.data.message,
+                        });
+                        return;
+                    }
                     Swal.fire({
                         title: "Success",
                         text: `TICKET BOOKED SUCCESSFULLY!Your Ticket is mailed to your email!\nYour ticket is is ${response.data.id} and token is ${response.data.token}`,
@@ -102,9 +124,9 @@ function onBookTicket() {
                     }).then(() => {
                         setTimeout(() => {
                             if (document.location.href.search("/admin/") < 0) {
-                                document.location.href = "/";
+                                // document.location.href = "/";
                             } else {
-                                location.reload();
+                                // location.reload();
                             }
                         }, 2000);
                     });
@@ -125,10 +147,6 @@ function onBookTicket() {
 }
 
 var filtered_flights = [];
-
-$("#ticket_type").on("change", function (e) {
-    calculateCostForDisplay();
-});
 
 function calculateCostForDisplay() {
     if (_flight) {

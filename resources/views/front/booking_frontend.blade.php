@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="passenger_name">Passenger Name(Owner)</label>
-                                    <input type="text" class="form-control" id="passenger_name" required value="Anamika Karki">
+                                    <input type="text" class="form-control" id="passenger_name" required value="Sunamika Karki">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="passenger_address">Address</label>

@@ -11,9 +11,11 @@ use App\Models\Ticket;
 use App\User;
 use Exception;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+
 
 class TicketController extends Controller
 {
@@ -109,7 +111,12 @@ class TicketController extends Controller
         $token = Str::random(10);
         $array = $request->all();
         $array["token"] = $token;
+        $pdf = App::make('dompdf.wrapper');
+        $mode = 'email';
+
         $ticket = Ticket::create($array);
+        $filepath = 'pdf/ticket_' . $ticket->id . '.pdf';
+        $pdf->loadView('partials.mail.ticket', compact(['ticket', 'mode']))->save($filepath);
         try {
             $this->send_email($ticket, $email);
             return $ticket;

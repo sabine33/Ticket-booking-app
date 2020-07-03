@@ -4,9 +4,13 @@ use App\Models\Airlines;
 use App\Models\Flight;
 use App\Models\Location;
 use App\Models\Ticket;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+
 
 Route::get('checkdb', function () {
     $pdo = DB::connection()->getPdo();
@@ -18,6 +22,17 @@ Route::get('checkdb', function () {
     }
 });
 
+Route::get('download', function () {
+    $ticket = Ticket::find(1);
+    $pdf = App::make('dompdf.wrapper');
+    $mode = 'email';
+    $filepath = 'pdf/ticket_' . $ticket->id . '.pdf';
+    $pdf->loadView('partials.mail.ticket', compact(['ticket', 'mode']))->save($filepath);
+    // Storage::put('public/pdf/tickets.pdf', $pdf->output());
+    return $pdf->download('ticket.pdf');
+    // $pdf = PDF::loadV('partials.mail.tickets', $ticket);
+    // return $pdf->download('ticket.pdf');
+});
 Route::get('info', function () {
     $ticket = Ticket::find(1);
     return view('partials.mail.ticket_info', compact('ticket'));

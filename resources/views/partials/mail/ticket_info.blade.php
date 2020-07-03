@@ -35,10 +35,15 @@
 
 <body>
 
+    <p>Please find all your flights details in the following document and download the attached ticket.</p>
     <table id="ticket">
         <tr>
             <th>Title</th>
             <th>Info</th>
+        </tr>
+        <tr>
+            <td>Ticket No.</td>
+            <td>{{$ticket->id}}</td>
         </tr>
         <tr>
             <td>Passenger Name</td>
@@ -108,6 +113,10 @@
         <tr>
             <td>Remarks</td>
             <td>{{$ticket->remarks}}</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>UNPAID</td>
         </tr>
     </table>
 
