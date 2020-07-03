@@ -3,6 +3,7 @@
 use App\Models\Airlines;
 use App\Models\Flight;
 use App\Models\Location;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,10 @@ Route::get('checkdb', function () {
     }
 });
 
+Route::get('info', function () {
+    $ticket = Ticket::find(1);
+    return view('partials.mail.ticket_info', compact('ticket'));
+});
 
 Route::get('/', 'FrontController@homepage');
 Route::get('about', 'FrontController@about');

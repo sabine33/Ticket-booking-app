@@ -22,8 +22,8 @@ class TicketMail extends Mailable
     public function build()
     {
 
-        return $this->view('partials.mail.ticket')
-            ->from('karki.sunamika@gmail.com', 'Mero Tickets')
+        return $this->view('partials.mail.ticket_info')
+            ->from('programmersabin33@gmail.com', 'Hawaijahaj')
             ->subject('Ticket Confirmation')
             ->with([
                 '$ticket' => $this->ticket,
