@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Mail\TicketMail;
+use App\Models\Airlines;
 use App\Models\Flight;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\User;
@@ -96,7 +98,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::find(1);
         $mode = array(["email" => false]);
-        Mail::to("karki.anamika@gmail.com")->send(new TicketMail($ticket));
+        Mail::to("karki.sunamika@gmail.com")->send(new TicketMail($ticket));
         return
             view('partials.mail.ticket', compact(['ticket', 'mode']));
     }
@@ -159,5 +161,30 @@ class TicketController extends Controller
         $Ticket->delete();
 
         return 204;
+    }
+    public function getAvailableTickets(Request $request)
+    {
+        $id = $request->id;
+        $bought = DB::table('tickets')
+            ->selectRaw('sum(adults_count)+sum(kids_count) as bought')->where('flight_id', '=', 1)
+            ->pluck('bought')[0];
+        $max = DB::table('flights')
+            ->selectRaw('max_ticket_count')->where('id', '=', 1)
+            ->pluck('max_ticket_count')[0];
+        //         $bought_tickets = DB::select(DB::raw("select sum(adults_count)+sum(kids_count) as bought_tickets from tickets where flight_id=:id
+        // "), array(
+        //             'id' => 1
+        //         ));
+
+        return array('available_tickets' => $max - $bought);
+    }
+    public function bookTickets(Request $request)
+    {
+        $id = $request->flight_id;
+        $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get();
+        $airlines = Airlines::all();
+        $locations = Location::all();
+        $layout = 'backend';
+        return view('front.booking_frontend', compact(['flights', 'airlines', 'locations', 'layout', 'id']));
     }
 }

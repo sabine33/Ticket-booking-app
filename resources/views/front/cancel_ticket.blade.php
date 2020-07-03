@@ -1,4 +1,4 @@
-@extends('front.layout')
+@extends('layouts.front_layout')
 
 @push('scripts')
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -9,9 +9,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numbered/1.1.0/index.min.js"></script>
 @endpush
 @section('content')
-<div style="background-image:url('/img/blur.jpg')">
+<div style="background-image:url('/img/blur.jpg');background-size:cover;" class="row">
+    <div class="col mx-2">
 
-    <div class="container" style="padding:80px 0px;">
+
         <h1 class="h4 mb-2 text-white">Cancel Ticket </h1>
         <p class="mb-4"> Use this section to cancel tickets.</p>
         <div class="card shadow mb-4">

@@ -1,22 +1,26 @@
-@extends((( $layout=='backend') ? 'layouts.main' : 'front.layout' ))
+@extends((( $layout=='backend') ? 'layouts.main' : 'layouts.front_layout' ))
 
+@if($layout=='frontend')
+@push('styles')
+<link rel="stylesheet" href="/css/style.css">
+@endpush
+@endif
 
 @push('scripts')
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
 <script src="/js/sb-admin-2.min.js"></script>
 <script src="/js/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numbered/1.1.0/index.min.js"></script>
 <script src="/js/swal.min.js"></script>
 
-
 @endpush
-@section('content')
-<div style="background-image:url('/img/blur.jpg')">
 
-    <div class="container py-3" style="">
-        <h1 class="h4 mb-2 text-white">Book Tickets </h1>
+@section('content')
+<div style="background-image:url('/img/blur.jpg');background-size:cover;" class="row">
+    <div class="col mx-1 my-1">
+
+
+        <h1 class=" h4 mb-2 text-white">Book Tickets </h1>
         <p class="mb-4"> Please use this section to book tickets.</p>
         <div class="card shadow mb-4 bg-info">
             <div class="card-body">
@@ -129,7 +133,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="passenger_email">Email</label>
-                                    <input type="email" class="form-control" id="passenger_email" required value="karki.anamika@gmail.com">
+                                    <input type="email" class="form-control" id="passenger_email" required value="karki.sunamika@gmail.com">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="remarks">Remarks</label>
@@ -153,7 +157,8 @@
         </div>
 
     </div>
-
+</div>
+</div>
 </div>
 
 @endsection

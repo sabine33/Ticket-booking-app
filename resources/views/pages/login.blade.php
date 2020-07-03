@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('style.css')}}">
 </head>
 
-<body style="background-image:url('/img/ga.jpg');background-size:cover;">
+<body style="background-image:url('/img/ga.jpg');background-size:cover;background-repeat:no-repeat;height:100vh;">
     <div class="container-fluid">
         <div class="row no-gutter">
             <div class="col-lg-4 mx-auto">

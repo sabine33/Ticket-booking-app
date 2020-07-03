@@ -10,6 +10,31 @@ use App\Models\Location;
 
 class FlightController extends Controller
 {
+    public function search(Request $request)
+    {
+        $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get();
+        $airlines = Airlines::all();
+        $locations = Location::all();
+        return view('front.search_frontend', compact(['flights', 'airlines', 'locations']));
+    }
+    public function searchFlights(Request $request)
+    {
+
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        $departure_type = $request->departure_type;
+        $ticket_count = $request->ticket_count;
+        $from_location_id = $request->from_location_id;
+        $to_location_id = $request->to_location_id;
+
+
+        $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get()->whereBetween('departure_date', [$from_date, $to_date])->where('available_tickets', '>=', $ticket_count)->where('from_location_id', '=', $from_location_id)->where('to_location_id', '=', $to_location_id);
+        $airlines = Airlines::all();
+        $locations = Location::all();
+        return view('front.search_frontend', compact(['flights', 'airlines', 'locations']));
+    }
+
+
     public function getAll()
     {
         $flights = Flight::with(['airlines', 'to_location', 'from_location'])->get();

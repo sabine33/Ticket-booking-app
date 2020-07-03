@@ -23,7 +23,7 @@ class TicketMail extends Mailable
     {
 
         return $this->view('partials.mail.ticket')
-            ->from('karki.anamika@gmail.com', 'Mero Tickets')
+            ->from('karki.sunamika@gmail.com', 'Mero Tickets')
             ->subject('Ticket Confirmation')
             ->with([
                 '$ticket' => $this->ticket,

@@ -623,16 +623,14 @@ ol {
 -----------------------*/
 
 .intro-text {
-    border: 15px solid #f8c471;
-    padding-left: 0px;
-    padding-top: 58px;
-    padding-bottom: 57px;
-    padding-right: 5px;
-    text-align: left;
+    border: 5px solid #f8c471;
+    padding-left: 10px 50px;
+    margin: 10px auto;
+    text-align: justify;
     font-size: 10px;
     position: relative;
-    margin-right: -55px;
-    margin-left: -45px;
+    /* margin-right: -55px;
+    margin-left: -45px; */
 }
 
 .intro-right {
@@ -2069,7 +2067,8 @@ ol {
     }
     .hero-area {
         height: 665px;
-        padding-top: 280px;
+
+        /* padding-top: 280px; */
     }
     .hero-text h1 {
         font-size: 70px;

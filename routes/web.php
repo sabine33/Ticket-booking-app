@@ -7,7 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+Route::get('checkdb', function () {
+    $pdo = DB::connection()->getPdo();
 
+    if ($pdo) {
+        echo "Connected successfully to database " . DB::connection()->getDatabaseName();
+    } else {
+        echo "You are not connected to database";
+    }
+});
 
 
 Route::get('/', 'FrontController@homepage');
@@ -17,10 +25,9 @@ Route::get('news', 'FrontController@news');
 Route::get('ticket', 'TicketController@getTicket');
 Route::get('contact', 'FrontController@contact_us');
 Route::get('booking-front/{flight_id}', 'FrontController@booking');
-Route::get('search', 'FrontController@search');
-Route::post('search', 'FrontController@searchFlights');
-Route::get('available_tickets', 'FrontController@getAvailableTickets');
-
+Route::get('search', 'FlightController@search');
+Route::post('search', 'FlightController@searchFlights');
+Route::get('available_tickets', 'TicketController@getAvailableTickets');
 Route::get('cancel_flight', 'TicketController@cancelTicket');
 Route::post('cancel_flight', 'TicketController@cancelTicketPost');
 
@@ -40,22 +47,12 @@ Route::prefix('admin')->group(function () {
     Route::resource('locations', 'LocationController')->middleware('auth');
     Route::resource('users', 'UserController')->middleware('auth');
     Route::resource('tickets', 'TicketController')->middleware('auth');
-    Route::get('search', 'SearchController@search')->middleware('auth');
-    Route::get('book-ticket/{flight_id}', 'SearchController@bookTickets');
+    Route::get('search', 'FlightController@search')->middleware('auth');
+    Route::get('book-ticket/{flight_id}', 'TicketController@bookTickets');
     Route::get('send_mail', 'TicketController@send_mail')->middleware('auth');
     Route::get('send_sms', 'TicketController@send_sms')->middleware('auth');
     Route::get('ticket', 'TicketController@getTicket')->middleware('auth');
     Route::get('/', 'DashboardController@index')->middleware('auth')->name('dashboard');
-});
-
-Route::get('checkdb', function () {
-    $pdo = DB::connection()->getPdo();
-
-    if ($pdo) {
-        echo "Connected successfully to database " . DB::connection()->getDatabaseName();
-    } else {
-        echo "You are not connected to database";
-    }
 });
 
 
