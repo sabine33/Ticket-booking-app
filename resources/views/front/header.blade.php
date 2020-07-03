@@ -33,6 +33,7 @@
                                 <a class="dropdown-item" href="/booking-front/1">Book Flights</a>
                                 <a class="dropdown-item" href="/search">Search Flights</a>
                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/ticket_print">Print Ticket</a>
                                 <a class="dropdown-item" href="/cancel_flight">Cancel Ticket</a>
                             </div>
                         </li>

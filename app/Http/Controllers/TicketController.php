@@ -104,6 +104,23 @@ class TicketController extends Controller
         return
             view('partials.mail.ticket_info', compact(['ticket', 'mode']));
     }
+    public function printTicket(Request $request)
+    {
+        $id = $request->id;
+        $token = $request->token;
+        $ticket = Ticket::all()->where('id', '=', $id)->where('token', '=', $token)->first();
+
+        if (!isset($ticket)) {
+            return 'Unable to find the ticket';
+        }
+
+
+        $filepath = 'pdf/ticket_' . $ticket->id . '.pdf';
+        $html = view('partials.mail.ticket', compact(['ticket']))->render();
+
+
+        return $html;
+    }
     public function store(Request $request)
     {
         $email = $request->passenger_email;
@@ -114,17 +131,23 @@ class TicketController extends Controller
         $pdf = App::make('dompdf.wrapper');
         $mode = 'email';
 
-        $ticket = Ticket::create($array);
-        $filepath = 'pdf/ticket_' . $ticket->id . '.pdf';
-        $pdf->loadView('partials.mail.ticket', compact(['ticket', 'mode']))->save($filepath);
         try {
+            $ticket = Ticket::create($array);
             $this->send_email($ticket, $email);
+            // $filepath = 'pdf/ticket_' . $ticket->id . '.pdf';
+            // $html = view('partials.mail.ticket', compact(['ticket', 'mode']))->render();
+
+            // $html .= '<link type="text/css" href="/css/ticket_style.css" rel="stylesheet" />';
+
+            // $html = $pdf->loadHTML($html)->save($filepath);
+
+            // $pdf->loadHtml($html)->save($filepath);
+
+            // $pdf->loadView('partials.mail.ticket', compact(['ticket', 'mode']))->save($filepath);
             return $ticket;
-            // $this->send_sms($phone, $ticket->id);
         } catch (Exception $ex) {
             return array('status' => false, 'message' => $ex->getMessage());
         }
-
         // return array('message' => 'Ticket successfully saved.', 'data' => $ticket);
     }
     public function cancelTicket(Request $request)

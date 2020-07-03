@@ -37,6 +37,14 @@ Route::get('info', function () {
     $ticket = Ticket::find(1);
     return view('partials.mail.ticket_info', compact('ticket'));
 });
+Route::get('ticket_print', function (Request $request) {
+    return view('front.print_ticket');
+});
+
+
+
+Route::get('ticket_print/{id}/{token}', 'TicketController@printTicket');
+Route::post('ticket_print', 'TicketController@printTicket');
 
 Route::get('/', 'FrontController@homepage');
 Route::get('about', 'FrontController@about');

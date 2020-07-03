@@ -36,6 +36,8 @@
 <body>
 
     <p>Please find all your flights details in the following document and download the attached ticket.</p>
+    <p>Please use the url <a href="{{url('/')}}/ticket_print/{{$ticket->id}}/{{$ticket->token}}">Print Ticket</a> for printing the ticket.</p>
+
     <table id="ticket">
         <tr>
             <th>Title</th>

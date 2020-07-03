@@ -36,10 +36,11 @@ class TicketMail extends Mailable
             ->subject('Ticket Confirmation')
             ->with([
                 '$ticket' => $this->ticket,
-            ])->attach($filepath, [
-                'as' => 'ticket.pdf',
-                'mime' => 'application/pdf',
             ]);
+        // ->attach($filepath, [
+        //     'as' => 'ticket.pdf',
+        //     'mime' => 'application/pdf',
+        // ]);
 
         // return $this->view('views.partials.mail.ticket');
     }

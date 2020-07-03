@@ -1,8 +1,15 @@
-<body>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" media="all" href="/css/ticket_style.css" />
 
+</head>
+
+<body onload="window.print();return false;">
+
     @if(!isset($mode))
-    <div class="button" id="print_button"><input type="button" value="Print Ticket" onclick="printTicket()"></div>
+    <!-- <div class="button" id="print_button"><input type="button" value="Print Ticket" onclick="printTicket()"></div> -->
     @endif
     <div class="main" style="font-family: fantasy;letter-spacing:0.1em">
         <div class="block1">
